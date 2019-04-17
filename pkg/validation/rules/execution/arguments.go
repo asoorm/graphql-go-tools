@@ -1,6 +1,8 @@
 package execution
 
 import (
+	"log"
+
 	"github.com/jensneuse/graphql-go-tools/pkg/document"
 	"github.com/jensneuse/graphql-go-tools/pkg/lookup"
 	"github.com/jensneuse/graphql-go-tools/pkg/validation"
@@ -89,6 +91,7 @@ func RequiredArguments() rules.Rule {
 
 			field, _, parent := fields.Value()
 			typeName := w.SelectionSetTypeName(l.SelectionSet(field.SelectionSet), parent)
+			log.Println("typeName", string(l.ByteSlice(typeName)), "fieldname", string(l.ByteSlice(field.Name)))
 
 			fieldsDefinition := l.FieldsDefinitionFromNamedType(typeName)
 			definition, ok := l.FieldDefinitionByNameFromDefinitions(fieldsDefinition, field.Name)

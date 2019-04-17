@@ -3,6 +3,7 @@ package middleware
 import (
 	"context"
 	"fmt"
+
 	"github.com/jensneuse/graphql-go-tools/pkg/lookup"
 	"github.com/jensneuse/graphql-go-tools/pkg/parser"
 	"github.com/jensneuse/graphql-go-tools/pkg/validator"
@@ -51,7 +52,7 @@ func (v *ValidationMiddleware) OnRequest(ctx context.Context, l *lookup.Lookup, 
 		return nil
 	}
 
-	return fmt.Errorf("ValidationMiddleware: Invalid Request: RuleName: %s, Description: %s", result.RuleName.String(), result.Description.String())
+	return fmt.Errorf("ValidationMiddleware: Invalid Request: RuleName: %s, Description: %s, SubjectNameRef: %s", result.RuleName.String(), result.Description.String(), string(l.ByteSlice(result.Meta.SubjectNameRef)))
 }
 
 func (v *ValidationMiddleware) OnResponse(ctx context.Context, response *[]byte, l *lookup.Lookup, w *lookup.Walker, parser *parser.Parser, mod *parser.ManualAstMod) (err error) {

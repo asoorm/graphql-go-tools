@@ -2,9 +2,10 @@ package lookup
 
 import (
 	"fmt"
+	"testing"
+
 	"github.com/jensneuse/graphql-go-tools/pkg/document"
 	"github.com/jensneuse/graphql-go-tools/pkg/parser"
-	"testing"
 )
 
 func (l *Lookup) DebugCachedNames(names ...int) map[int]string {
@@ -319,6 +320,7 @@ input ComplexInput { name: String, owner: String }
 input ComplexNonOptionalInput { name: String! }
 
 type Query {
+	assets: [Asset]!
 	human: Human
   	pet: Pet
   	dog: Dog
@@ -330,6 +332,11 @@ type Query {
 	findDog(complex: ComplexInput): Dog
 	findDogNonOptional(complex: ComplexNonOptionalInput): Dog
   	booleanList(booleanListArg: [Boolean!]): Boolean
+}
+
+type Asset {
+	id: ID!
+	handle: String!
 }
 
 type ValidArguments {
