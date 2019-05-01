@@ -60,6 +60,10 @@ func (i *Invoker) RewriteRequest(w io.Writer) error {
 	return i.astPrint.PrintExecutableSchema(w)
 }
 
+func (i *Invoker) RewriteResponse(w io.Writer) error {
+	panic("Not implemented")
+}
+
 func (i *Invoker) middlewaresPrepareSchema(ctx context.Context) error {
 	for j := range i.middleWares {
 		err := i.middleWares[j].PrepareSchema(ctx, i.look, i.walk, i.parse, i.mod)

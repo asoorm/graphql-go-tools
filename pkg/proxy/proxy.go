@@ -25,7 +25,7 @@ type Request struct {
 
 type RequestInterface interface {
 	AcceptRequest(buff *bytes.Buffer) error
-	DispatchRequest(buff *bytes.Buffer) (io.ReadCloser, error)
-	AcceptResponse()
+	DispatchRequest(buff *bytes.Buffer) error
+	AcceptResponse(buff *bytes.Buffer) error
 	DispatchResponse()
 }

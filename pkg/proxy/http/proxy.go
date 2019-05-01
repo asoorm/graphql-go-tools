@@ -59,7 +59,7 @@ func (pr *ProxyRequest) AcceptRequest(buff *bytes.Buffer) error {
 	return err
 }
 
-func (pr *ProxyRequest) DispatchRequest(buff *bytes.Buffer) (io.ReadCloser, error) {
+func (pr *ProxyRequest) DispatchRequest(buff *bytes.Buffer) error {
 
 	req := GraphqlJsonRequest{
 		Query: buff.String(),
@@ -68,7 +68,7 @@ func (pr *ProxyRequest) DispatchRequest(buff *bytes.Buffer) (io.ReadCloser, erro
 	out := bytes.Buffer{}
 	err := json.NewEncoder(&out).Encode(req)
 	if err != nil {
-		return nil, err
+		return err
 	}
 
 	client := pr.Proxy.ClientPool.Get().(*http.Client)
@@ -87,12 +87,23 @@ func (pr *ProxyRequest) DispatchRequest(buff *bytes.Buffer) (io.ReadCloser, erro
 	request.Header.Set("Content-Type", "application/json")
 	response, err := client.Do(&request)
 	if err != nil {
-		return nil, err
+		return err
 	}
-	return response.Body, nil
+	defer response.Body.Close()
+
+	rBytes, err := ioutil.ReadAll(response.Body)
+	if err != nil {
+		return err
+	}
+
+	if _, err := buff.Write(rBytes); err != nil {
+		return err
+	}
+
+	return nil
 }
 
-func (pr *ProxyRequest) AcceptResponse() {
+func (pr *ProxyRequest) AcceptResponse(buff *bytes.Buffer) error {
 	panic("implement me")
 }
 
@@ -101,6 +112,7 @@ func (pr *ProxyRequest) DispatchResponse() {
 }
 
 func (p *Proxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	defer r.Body.Close()
 	buff := p.BufferPool.Get().(*bytes.Buffer)
 	buff.Reset()
 
@@ -120,27 +132,27 @@ func (p *Proxy) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	responseBody, err := pr.DispatchRequest(buff)
-	if err != nil {
+	if err := pr.DispatchRequest(buff); err != nil {
 		p.BufferPool.Put(buff)
-		r.Body.Close()
+		p.HandleError(err, w)
 		return
 	}
 
 	// todo: implement the OnResponse handlers
+	if err := pr.AcceptResponse(buff); err != nil {
+		p.BufferPool.Put(buff)
+		p.HandleError(err, w)
+		return
+	}
 
-	_, err = io.Copy(w, responseBody)
+	_, err = io.Copy(w, buff)
 	if err != nil {
 		p.BufferPool.Put(buff)
-		r.Body.Close()
-		responseBody.Close()
 		p.HandleError(err, w)
 		return
 	}
 
 	p.BufferPool.Put(buff)
-	r.Body.Close()
-	responseBody.Close()
 }
 
 func (f *Proxy) SetContextValues(ctx context.Context, header http.Header, addHeaders [][]byte) context.Context {
