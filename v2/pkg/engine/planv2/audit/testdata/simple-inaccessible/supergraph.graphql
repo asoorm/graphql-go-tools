@@ -1,0 +1,15 @@
+type Query {
+  usersInAge: [User!]!
+  usersInFriends: [User!]!
+}
+
+type User {
+  id: ID
+  age: Int
+  friends: [User!]!
+  type: FriendType
+}
+
+enum FriendType {
+  FRIEND
+}

@@ -1,0 +1,6 @@
+mutation {
+  five: add(num: 5, requestId: "e5fc2bb4d9113")
+  ten: multiply(by: 2, requestId: "e5fc2bb4d9113")
+  twelve: add(num: 2, requestId: "e5fc2bb4d9113")
+  final: delete(requestId: "e5fc2bb4d9113")
+}

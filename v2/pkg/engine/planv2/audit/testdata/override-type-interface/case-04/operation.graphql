@@ -1,0 +1,10 @@
+{
+  anotherFeed {
+    createdAt
+    id
+    ... on ImagePost {
+      createdAt
+      id
+    }
+  }
+}

@@ -1,0 +1,15 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@key", "@interfaceObject", "@external", "@requires"]
+      )
+
+    type Query {
+      anotherUsers: [NodeWithName]
+    }
+
+    type NodeWithName @key(fields: "id") @interfaceObject {
+      id: ID!
+      name: String @external
+      username: String @requires(fields: "name")
+    }

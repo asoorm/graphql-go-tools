@@ -1,0 +1,10 @@
+{
+  productNode {
+    ... on Product {
+      id
+      name
+      __typename
+      price
+    }
+  }
+}

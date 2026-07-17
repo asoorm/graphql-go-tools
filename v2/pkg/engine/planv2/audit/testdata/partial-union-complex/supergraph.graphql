@@ -1,0 +1,29 @@
+type Query {
+  rootA: Container
+  shared: Container
+  rootB: Container
+}
+
+type Container {
+  id: ID!
+  wrapper: Wrapper
+  bWrapper: Wrapper
+}
+
+type Wrapper {
+  actions: [Action!]!
+}
+
+union Action = Common | OnlyA | OnlyB
+
+type Common {
+  label: String
+}
+
+type OnlyA {
+  a: String
+}
+
+type OnlyB {
+  b: String
+}

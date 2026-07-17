@@ -1,0 +1,25 @@
+interface Post {
+  id: ID!
+  createdAt: String!
+}
+
+type ImagePost implements Post & AnotherPost {
+  id: ID!
+  createdAt: String!
+}
+
+type Query {
+  feed: [Post]
+  anotherFeed: [AnotherPost]
+}
+
+type TextPost implements Post {
+  id: ID!
+  createdAt: String!
+  body: String!
+}
+
+interface AnotherPost {
+  id: ID!
+  createdAt: String!
+}

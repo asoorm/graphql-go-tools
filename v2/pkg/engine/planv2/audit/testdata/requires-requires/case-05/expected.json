@@ -1,0 +1,8 @@
+{
+  "data": {
+    "product": {
+      "canAfford": false,
+      "canAffordWithDiscount": true
+    }
+  }
+}

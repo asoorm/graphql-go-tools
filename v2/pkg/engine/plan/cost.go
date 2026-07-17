@@ -33,6 +33,7 @@ import (
 	"github.com/wundergraph/astjson"
 
 	"github.com/wundergraph/graphql-go-tools/v2/pkg/ast"
+	"github.com/wundergraph/graphql-go-tools/v2/pkg/astvisitor"
 	"github.com/wundergraph/graphql-go-tools/v2/pkg/engine/resolve"
 	"github.com/wundergraph/graphql-go-tools/v2/pkg/operationreport"
 )
@@ -946,6 +947,63 @@ func NewCostCalculator(config Configuration) *CostCalculator {
 	c.defaultListSize = max(config.StaticCostDefaultListSize, 1)
 	c.ignoreImplementingTypeWeights = config.IgnoreImplementingTypeWeights
 	return &c
+}
+
+// FieldDataSourceHashResolver returns the datasource hashes whose cost configuration applies to one
+// operation field, identified by its response path (e.g. "Query.hero.name") and its
+// enclosing-type/field coordinate. It is supplied by an EXTERNAL planner (planner-v2) that produces
+// its own field->datasource attribution; the internal v1 planner uses the fieldPlanners map instead.
+type FieldDataSourceHashResolver func(fieldPath, typeName, fieldName string) []DSHash
+
+// BuildCostCalculator builds a CostCalculator for an ALREADY-PLANNED operation without running the
+// internal planning walker. It walks operation/definition with the very same CostVisitor the v1
+// planner registers, so the produced calculator is the identical cost machinery (same tree, same
+// EstimateCost/ActualCost/ValidateSliceArguments semantics); the only substitution is the per-field
+// datasource attribution, which comes from resolver instead of the planner's fieldPlanners map.
+//
+// External planners (planner-v2) call this at their facade to honor plan.Configuration.ComputeCosts:
+// they attach the returned calculator to the plan via Plan.SetCostCalculator, so a downstream
+// consumer (the execution engine's cost-limit enforcement) sees a working calculator rather than nil.
+//
+// operationName selects which operation to price; "" selects the document's single/first operation.
+// Like the v1 cost path, this assumes the operation document has been normalized to the one operation
+// being planned (multiple co-resident operations would pollute a single cost tree -- the same
+// limitation the v1 planner's shared-tree CostVisitor carries). Returns nil when resolver is nil or
+// the walk reports an error.
+func BuildCostCalculator(config Configuration, operation, definition *ast.Document, operationName string, resolver FieldDataSourceHashResolver) *CostCalculator {
+	if resolver == nil {
+		return nil
+	}
+	walker := astvisitor.NewWalker(48)
+	cv := NewCostVisitor(&walker, operation, definition)
+	cv.dsResolver = resolver
+	opRef := selectCostOperationRef(operation, operationName)
+	cv.operationDefinition = &opRef
+	walker.RegisterEnterFieldVisitor(cv)
+	walker.RegisterLeaveFieldVisitor(cv)
+	report := &operationreport.Report{}
+	walker.Walk(operation, definition, report)
+	if report.HasErrors() {
+		return nil
+	}
+	calc := NewCostCalculator(config)
+	calc.tree = cv.finalCostTree()
+	return calc
+}
+
+// selectCostOperationRef returns the ref of the operation the cost tree prices: the one whose name
+// matches operationName, or the first operation when operationName is empty (the single-operation
+// contract). Returns 0 when nothing matches, matching the CostVisitor's zero-ref fallback.
+func selectCostOperationRef(operation *ast.Document, operationName string) int {
+	for ref := range operation.OperationDefinitions {
+		if operationName == "" {
+			return ref
+		}
+		if operation.OperationDefinitionNameString(ref) == operationName {
+			return ref
+		}
+	}
+	return 0
 }
 
 // EstimateCost returns the calculated total static cost.

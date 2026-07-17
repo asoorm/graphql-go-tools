@@ -1,0 +1,12 @@
+{
+  "data": {
+    "anotherFeed": [
+      {
+        "createdAt": "i1-createdAt"
+      },
+      {
+        "createdAt": "i2-createdAt"
+      }
+    ]
+  }
+}

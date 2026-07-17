@@ -1,0 +1,28 @@
+type Query {
+  product: Product!
+  products: [Product!]!
+}
+
+type Product {
+  id: ID!
+  category: Category!
+  name: Name!
+  price: Price!
+}
+
+type Category {
+  id: ID!
+  name: String!
+}
+
+type Name {
+  id: ID!
+  brand: String!
+  model: String!
+}
+
+type Price {
+  id: ID!
+  amount: Int!
+  currency: String!
+}

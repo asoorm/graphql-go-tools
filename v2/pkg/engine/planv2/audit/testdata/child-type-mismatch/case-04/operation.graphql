@@ -1,0 +1,58 @@
+query DeeplyNested {
+  accounts {
+    ... on User {
+      name
+      similarAccounts {
+        ... on User {
+          name
+          similarAccounts {
+            ... on User {
+              name
+            }
+            ... on Admin {
+              name
+            }
+          }
+        }
+        ... on Admin {
+          name
+          similarAccounts {
+            ... on User {
+              name
+            }
+            ... on Admin {
+              name
+            }
+          }
+        }
+      }
+    }
+    ... on Admin {
+      name
+      similarAccounts {
+        ... on User {
+          name
+          similarAccounts {
+            ... on User {
+              name
+            }
+            ... on Admin {
+              name
+            }
+          }
+        }
+        ... on Admin {
+          name
+          similarAccounts {
+            ... on User {
+              name
+            }
+            ... on Admin {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+}

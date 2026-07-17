@@ -1,0 +1,8 @@
+{
+  "data": {
+    "product": {
+      "isExpensive": true,
+      "canAfford": false
+    }
+  }
+}

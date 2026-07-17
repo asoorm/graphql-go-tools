@@ -1,0 +1,6 @@
+{
+  product {
+    canAfford
+    canAffordWithDiscount
+  }
+}

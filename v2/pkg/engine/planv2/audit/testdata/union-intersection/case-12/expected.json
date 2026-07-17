@@ -1,0 +1,11 @@
+{
+  "data": {
+    "viewer": {
+      "aMedia": {},
+      "bMedia": {
+        "title": "A Movie Title",
+        "bTitle": "B Movie Title"
+      }
+    }
+  }
+}

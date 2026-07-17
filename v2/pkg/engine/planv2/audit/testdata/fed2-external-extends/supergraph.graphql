@@ -1,0 +1,12 @@
+type Query {
+  randomUser: User
+  providedRandomUser: User
+  userById(id: ID): User
+}
+
+type User {
+  id: ID!
+  name: String!
+  rid: ID
+  nickname: String
+}

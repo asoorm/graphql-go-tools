@@ -1,0 +1,6 @@
+{
+  order {
+    buyer { rating }
+    seller { rating }
+  }
+}

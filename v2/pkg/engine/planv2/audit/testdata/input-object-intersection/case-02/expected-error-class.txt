@@ -1,0 +1,2 @@
+plan-success
+Runtime-error expectation: the input value crosses a subgraph whose input type lacks the field - a subgraph-execution error.

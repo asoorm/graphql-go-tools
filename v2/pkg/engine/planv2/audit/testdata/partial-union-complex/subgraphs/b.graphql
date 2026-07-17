@@ -1,0 +1,30 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@key", "@shareable"]
+      )
+
+    type Query {
+      rootB: Container
+      shared: Container @shareable
+    }
+
+    type Container @key(fields: "id") {
+      id: ID!
+      wrapper: Wrapper @shareable
+      bWrapper: Wrapper
+    }
+
+    type Wrapper @shareable {
+      actions: [Action!]! @shareable
+    }
+
+    union Action = Common | OnlyB
+
+    type Common @shareable {
+      label: String
+    }
+
+    type OnlyB {
+      b: String
+    }

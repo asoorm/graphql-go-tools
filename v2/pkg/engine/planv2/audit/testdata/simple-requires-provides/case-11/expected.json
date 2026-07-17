@@ -1,0 +1,18 @@
+{
+  "data": {
+    "me": {
+      "reviews": [
+        {
+          "product": {
+            "shippingEstimate": 110
+          }
+        },
+        {
+          "product": {
+            "shippingEstimate": 440
+          }
+        }
+      ]
+    }
+  }
+}

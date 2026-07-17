@@ -1,0 +1,13 @@
+{
+  "data": {
+    "accounts": [
+      {
+        "__typename": "Admin"
+      },
+      {
+        "__typename": "Admin"
+      },
+      {}
+    ]
+  }
+}

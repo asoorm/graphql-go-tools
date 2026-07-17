@@ -1,0 +1,18 @@
+type Product {
+  upc: String!
+  weight: Int
+  price(currency: String!): Int
+  shippingEstimate: Int
+  shippingEstimateEUR: Int
+  category: Category
+  isExpensiveCategory: Boolean
+  name: String
+}
+
+type Category {
+  averagePrice(currency: String!): Int
+}
+
+type Query {
+  products: [Product]
+}

@@ -1,0 +1,7 @@
+{
+  "data": {
+    "a": {
+      "requirer": "q1-foo_requirer"
+    }
+  }
+}

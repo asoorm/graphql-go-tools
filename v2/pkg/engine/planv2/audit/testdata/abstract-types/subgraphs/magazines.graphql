@@ -1,0 +1,16 @@
+schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@key", "@shareable"]
+      ) {
+      query: Query
+    }
+
+    type Magazine @key(fields: "id") {
+      id: ID!
+      title: String
+    }
+
+    type Query {
+      magazines: [Magazine]
+    }

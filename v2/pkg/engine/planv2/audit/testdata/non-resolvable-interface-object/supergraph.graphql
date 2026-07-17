@@ -1,0 +1,19 @@
+interface Node {
+  id: ID!
+  field: String
+}
+
+interface Product {
+  id: ID!
+}
+
+type Query {
+  a: Node
+  product: Product!
+  b: Node
+}
+
+type Bread implements Product {
+  id: ID!
+  name: String!
+}

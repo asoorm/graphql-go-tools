@@ -1,0 +1,26 @@
+type Query {
+  products: [Product]
+  node(id: ID!): Node
+  nodes: [Node]
+  toasters: [Toaster]
+}
+
+union Product = Oven | Toaster
+
+interface Node {
+  id: ID!
+}
+
+interface WithWarranty {
+  warranty: Int
+}
+
+type Oven implements Node & WithWarranty {
+  id: ID!
+  warranty: Int
+}
+
+type Toaster implements Node & WithWarranty {
+  id: ID!
+  warranty: Int
+}

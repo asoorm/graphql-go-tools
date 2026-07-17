@@ -1,0 +1,11 @@
+{
+  "data": {
+    "product": {
+      "samePriceProduct": {
+        "samePriceProduct": {
+          "__typename": "Book"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  viewer {
+    aMedia {
+      ... on Movie {
+        title
+        bTitle
+      }
+    }
+    bMedia {
+      ... on Movie {
+        title
+        bTitle
+      }
+    }
+  }
+}

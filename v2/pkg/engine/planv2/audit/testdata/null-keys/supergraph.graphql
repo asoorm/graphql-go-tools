@@ -1,0 +1,18 @@
+type Query {
+  bookContainers: [BookContainer]
+}
+
+type BookContainer {
+  book: Book
+}
+
+type Book {
+  upc: ID!
+  id: ID!
+  author: Author
+}
+
+type Author {
+  id: ID!
+  name: String
+}

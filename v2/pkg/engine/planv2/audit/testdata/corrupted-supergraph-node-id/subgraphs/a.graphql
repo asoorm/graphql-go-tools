@@ -1,0 +1,24 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@key", "@shareable", "@external"]
+      )
+
+    type Query {
+      node(id: ID!): Node @shareable
+      account(id: String!): Account
+    }
+
+    interface Node {
+      id: ID!
+    }
+
+    type Account implements Node @key(fields: "id") {
+      id: ID!
+      username: String!
+    }
+
+    type Chat implements Node @key(fields: "id") {
+      id: ID! @external
+      account: Account!
+    }

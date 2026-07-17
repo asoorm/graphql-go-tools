@@ -5,6 +5,8 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
+	"os"
+	"sync"
 	"time"
 
 	lru "github.com/hashicorp/golang-lru"
@@ -20,12 +22,30 @@ import (
 	"github.com/wundergraph/graphql-go-tools/v2/pkg/astvalidation"
 	"github.com/wundergraph/graphql-go-tools/v2/pkg/engine/datasource/introspection_datasource"
 	"github.com/wundergraph/graphql-go-tools/v2/pkg/engine/plan"
+	"github.com/wundergraph/graphql-go-tools/v2/pkg/engine/planv2"
 	"github.com/wundergraph/graphql-go-tools/v2/pkg/engine/postprocess"
 	"github.com/wundergraph/graphql-go-tools/v2/pkg/engine/resolve"
 	"github.com/wundergraph/graphql-go-tools/v2/pkg/operationreport"
 	"github.com/wundergraph/graphql-go-tools/v2/pkg/pool"
 	"github.com/wundergraph/graphql-go-tools/v2/pkg/variablesvalidation"
 )
+
+var (
+	planV2Once     sync.Once
+	planV2Enabled_ bool
+)
+
+// planV2Enabled reports whether the executed-truth harness should route planning through
+// planner-v2 (PLANV2=1). Read once and cached.
+func planV2Enabled() bool {
+	planV2Once.Do(func() {
+		planV2Enabled_ = os.Getenv("PLANV2") == "1"
+	})
+	return planV2Enabled_
+}
+
+// planV2Trace enables per-operation planv2-vs-fallback tracing on stderr (PLANV2_TRACE=1).
+func planV2Trace() bool { return os.Getenv("PLANV2_TRACE") == "1" }
 
 type internalExecutionContext struct {
 	resolveContext *resolve.Context
@@ -313,8 +333,58 @@ func (e *ExecutionEngine) getCachedPlan(ctx *internalExecutionContext, operation
 		}
 	}
 
-	planner, _ := plan.NewPlanner(e.config.plannerConfig)
-	planResult := planner.Plan(operation, definition, operationName, report)
+	var planResult plan.Plan
+	if planV2Enabled() {
+		// Executed-truth harness (M1.5): route planning through planner-v2 when PLANV2=1.
+		// planv2 is a drop-in for plan.Planner (subscriptions included since the D11.12 wave --
+		// it returns plan.SubscriptionResponsePlan for them). On any planv2 error we fall back
+		// to v1 so the harness still executes.
+		v2Report := &operationreport.Report{}
+		// planv2 (M1) plans real federation subgraphs, each of which carries an upstream SDL.
+		// The engine also injects a synthetic introspection datasource (no upstream schema);
+		// exclude it here so planv2 builds over the federation graph. Pure introspection
+		// operations then produce no planv2 plan and fall back to v1 below.
+		v2Config := e.config.plannerConfig
+		filtered := make([]plan.DataSource, 0, len(v2Config.DataSources))
+		for _, ds := range v2Config.DataSources {
+			if _, ok := ds.UpstreamSchema(); ok {
+				filtered = append(filtered, ds)
+			}
+		}
+		v2Config.DataSources = filtered
+		if v2Planner, npErr := planv2.NewPlanner(v2Config); npErr == nil {
+			// planv2 mutates op/def during planning; run it on copies so the v1 fallback below
+			// still sees pristine input. (Executed-truth harness only; not committed.)
+			opCopy, defCopy := *operation, *definition
+			if p := v2Planner.Plan(&opCopy, &defCopy, operationName, v2Report); p != nil && !v2Report.HasErrors() {
+				planResult = p
+				*operation, *definition = opCopy, defCopy // keep downstream consistent with the chosen plan
+			}
+		}
+		if planV2Trace() {
+			if opStr, err := astprinter.PrintString(operation); err == nil {
+				fmt.Fprintf(os.Stderr, "PLANV2_TRACE: normalized op: %s\n", opStr)
+			}
+			if planResult != nil {
+				fmt.Fprintf(os.Stderr, "PLANV2_TRACE: planv2 OK\n")
+				if sp, ok := planResult.(*plan.SynchronousResponsePlan); ok && sp.Response != nil {
+					for i, item := range sp.Response.RawFetches {
+						if sf, ok := item.Fetch.(*resolve.SingleFetch); ok && sf.QueryPlan != nil {
+							fmt.Fprintf(os.Stderr, "PLANV2_TRACE:   fetch %d ds=%s entity=%v deps=%v path=%s doc=%s\n",
+								i, sf.DataSourceIdentifier, sf.RequiresEntityFetch || sf.RequiresEntityBatchFetch,
+								sf.DependsOnFetchIDs, item.ResponsePath, sf.QueryPlan.Query)
+						}
+					}
+				}
+			} else {
+				fmt.Fprintf(os.Stderr, "PLANV2_TRACE: fallback v1 (%v)\n", v2Report.Error())
+			}
+		}
+	}
+	if planResult == nil {
+		planner, _ := plan.NewPlanner(e.config.plannerConfig)
+		planResult = planner.Plan(operation, definition, operationName, report)
+	}
 	if report.HasErrors() {
 		return nil, nil
 	}

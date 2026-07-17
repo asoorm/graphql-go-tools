@@ -1,0 +1,32 @@
+{
+  "data": {
+    "products": [
+      {
+        "id": "p1",
+        "categories": [
+          {
+            "id": "c1",
+            "name": "Category 1"
+          },
+          {
+            "id": "c2",
+            "name": "Category 2"
+          }
+        ]
+      },
+      {
+        "id": "p2",
+        "categories": [
+          {
+            "id": "c3",
+            "name": "Category 3"
+          },
+          {
+            "id": "c2",
+            "name": "Category 2"
+          }
+        ]
+      }
+    ]
+  }
+}

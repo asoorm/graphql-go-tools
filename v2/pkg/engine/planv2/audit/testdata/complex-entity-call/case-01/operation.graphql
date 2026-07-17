@@ -1,0 +1,24 @@
+{
+  topProducts {
+    products {
+      id
+      pid
+      price {
+        price
+      }
+      category {
+        mainProduct {
+          id
+        }
+        id
+        tag
+      }
+    }
+    selected {
+      id
+    }
+    first {
+      id
+    }
+  }
+}

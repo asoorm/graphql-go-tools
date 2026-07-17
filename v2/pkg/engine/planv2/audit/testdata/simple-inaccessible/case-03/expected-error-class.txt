@@ -1,0 +1,2 @@
+plan-success
+Runtime-error expectation: the @inaccessible field errors at the gateway/runtime layer; the plan itself is well-formed.

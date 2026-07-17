@@ -1,0 +1,12 @@
+{
+  rootA {
+    wrapper {
+      actions {
+        __typename
+        ... on OnlyB {
+          b
+        }
+      }
+    }
+  }
+}

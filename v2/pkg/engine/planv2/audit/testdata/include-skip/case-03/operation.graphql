@@ -1,0 +1,6 @@
+query ($bool: Boolean = true) {
+  product {
+    price
+    include @include(if: $bool)
+  }
+}

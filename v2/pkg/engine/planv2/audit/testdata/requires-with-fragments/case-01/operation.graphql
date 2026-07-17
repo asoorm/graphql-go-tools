@@ -1,0 +1,14 @@
+{
+  b {
+    id
+    data {
+      __typename
+    }
+  }
+  bb {
+    id
+    data {
+      __typename
+    }
+  }
+}

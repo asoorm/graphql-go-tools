@@ -1,0 +1,21 @@
+type Query {
+  node(id: ID!): Node
+  account(id: String!): Account
+  chat(id: String!): Chat
+}
+
+interface Node {
+  id: ID!
+}
+
+type Account implements Node {
+  id: ID!
+  username: String!
+  chats: [Chat!]!
+}
+
+type Chat implements Node {
+  id: ID!
+  account: Account!
+  text: String!
+}

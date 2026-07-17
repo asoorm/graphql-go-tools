@@ -1,0 +1,9 @@
+{
+  "data": {
+    "cheapestProduct": {
+      "id": "1",
+      "price": 100,
+      "name": "name-1"
+    }
+  }
+}

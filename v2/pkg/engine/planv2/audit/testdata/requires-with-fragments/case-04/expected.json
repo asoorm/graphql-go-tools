@@ -1,0 +1,10 @@
+{
+  "data": {
+    "bb": {
+      "data": {
+        "__typename": "Qux"
+      },
+      "requirer": "q1-foo_requirer"
+    }
+  }
+}

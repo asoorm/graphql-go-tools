@@ -1,0 +1,18 @@
+{
+  book: similar(id: "p1") {
+    id
+    sku
+    delivery(zip: "1234") {
+      fastestDelivery
+      estimatedDelivery
+    }
+  }
+  magazine: similar(id: "p2") {
+    id
+    sku
+    delivery(zip: "1234") {
+      fastestDelivery
+      estimatedDelivery
+    }
+  }
+}

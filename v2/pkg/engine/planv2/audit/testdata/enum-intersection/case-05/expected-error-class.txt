@@ -1,0 +1,2 @@
+plan-success
+Runtime-error expectation: the enum value is valid per the composed schema but unrepresentable in the target subgraph - a subgraph-execution error, not plannable knowledge.

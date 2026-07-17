@@ -1,0 +1,32 @@
+{
+  "data": {
+    "products": [
+      {
+        "author": {
+          "email": "u1@example.com",
+          "totalProductsCreated": 2
+        }
+      },
+      {
+        "author": {
+          "email": "u2@example.com",
+          "totalProductsCreated": 2
+        }
+      },
+      {
+        "author": {
+          "email": "u1@example.com",
+          "totalProductsCreated": 2
+        },
+        "title": "Magazine 1"
+      },
+      {
+        "author": {
+          "email": "u2@example.com",
+          "totalProductsCreated": 2
+        },
+        "title": "Magazine 2"
+      }
+    ]
+  }
+}

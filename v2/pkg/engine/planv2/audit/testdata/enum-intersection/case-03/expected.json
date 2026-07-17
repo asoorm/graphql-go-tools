@@ -1,0 +1,14 @@
+{
+  "data": {
+    "usersB": [
+      {
+        "id": "u1",
+        "type": "REGULAR"
+      },
+      {
+        "id": "u2",
+        "type": null
+      }
+    ]
+  }
+}

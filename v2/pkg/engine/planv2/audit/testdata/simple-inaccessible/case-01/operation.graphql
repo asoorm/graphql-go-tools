@@ -1,0 +1,8 @@
+{
+  usersInAge {
+    id
+    friends {
+      id
+    }
+  }
+}

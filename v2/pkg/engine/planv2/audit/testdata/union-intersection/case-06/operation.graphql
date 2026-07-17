@@ -1,0 +1,9 @@
+{
+  viewer {
+    media {
+      ... on Book {
+        title
+      }
+    }
+  }
+}

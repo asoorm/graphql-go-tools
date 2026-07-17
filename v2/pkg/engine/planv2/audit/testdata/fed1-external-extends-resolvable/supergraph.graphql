@@ -1,0 +1,12 @@
+type Query {
+  productInA: Product
+  productInB: Product
+}
+
+type Product {
+  id: ID
+  name: String
+  pid: ID
+  upc: String
+  price: Float!
+}

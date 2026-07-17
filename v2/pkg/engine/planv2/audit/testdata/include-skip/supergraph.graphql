@@ -1,0 +1,13 @@
+type Query {
+  product: Product
+}
+
+type Product {
+  id: ID!
+  price: Float!
+  isExpensive: Boolean!
+  include: Boolean!
+  skip: Boolean!
+  neverCalledInclude: Boolean!
+  neverCalledSkip: Boolean!
+}

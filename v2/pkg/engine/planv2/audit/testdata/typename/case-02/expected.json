@@ -1,0 +1,10 @@
+{
+  "data": {
+    "interface": {
+      "id": "2",
+      "__typename": "Toaster",
+      "typename": "Toaster",
+      "t": "Toaster"
+    }
+  }
+}

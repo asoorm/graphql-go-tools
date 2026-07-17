@@ -1,0 +1,26 @@
+{
+  product {
+    __typename
+    samePriceProduct {
+      __typename
+      ... on Book {
+        id
+      }
+      samePriceProduct {
+        __typename
+        ... on Book {
+          id
+        }
+      }
+    }
+    ... on Book {
+      __typename
+      id
+      price
+      samePriceProduct {
+        id
+        price
+      }
+    }
+  }
+}

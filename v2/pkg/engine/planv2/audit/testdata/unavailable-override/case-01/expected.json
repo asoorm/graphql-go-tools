@@ -1,0 +1,12 @@
+{
+  "data": {
+    "feed": [
+      {
+        "createdAt": "p1-createdAt"
+      },
+      {
+        "createdAt": "p2-createdAt"
+      }
+    ]
+  }
+}

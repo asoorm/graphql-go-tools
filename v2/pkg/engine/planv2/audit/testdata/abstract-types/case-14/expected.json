@@ -1,0 +1,44 @@
+{
+  "data": {
+    "products": [
+      {
+        "id": "p1",
+        "reviews": [
+          {
+            "product": {
+              "id": "p1",
+              "title": "Book 1",
+              "sku": "sku-1"
+            }
+          },
+          {
+            "product": {
+              "id": "p1",
+              "title": "Book 1",
+              "sku": "sku-1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "reviews": []
+      },
+      {
+        "id": "p2",
+        "reviews": [
+          {
+            "product": {
+              "id": "p2",
+              "sku": "sku-2"
+            }
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "reviews": []
+      }
+    ]
+  }
+}

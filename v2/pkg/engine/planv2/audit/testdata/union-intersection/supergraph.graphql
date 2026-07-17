@@ -1,0 +1,39 @@
+union Media = Book | Song | Movie
+
+union ViewerMedia = Book | Song | Movie
+
+type Book {
+  id: ID!
+  title: String!
+  aTitle: String!
+  bTitle: String!
+}
+
+type Song {
+  id: ID!
+  title: String!
+  aTitle: String!
+}
+
+type Query {
+  media: Media
+  aMedia: Media
+  book: Media
+  song: Media
+  viewer: Viewer
+  bMedia: Media
+}
+
+type Viewer {
+  media: ViewerMedia
+  aMedia: ViewerMedia
+  book: ViewerMedia
+  song: ViewerMedia
+  bMedia: ViewerMedia
+}
+
+type Movie {
+  id: ID!
+  title: String!
+  bTitle: String!
+}

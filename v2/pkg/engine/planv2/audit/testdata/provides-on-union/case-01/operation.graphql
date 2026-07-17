@@ -1,0 +1,11 @@
+{
+  media {
+    ... on Book {
+      id
+      title
+    }
+    ... on Movie {
+      id
+    }
+  }
+}

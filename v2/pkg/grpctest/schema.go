@@ -86,6 +86,24 @@ func MustGraphQLSchema(t testing.TB) ast.Document {
 	return doc
 }
 
+// SchemaSDL returns the raw products subgraph SDL (the embedded products.graphqls), for callers that
+// need the SDL string rather than a parsed document -- e.g. graphql_datasource.NewSchemaConfiguration,
+// which parses and base-schema-merges it into the upstream AST a gRPC datasource plans against.
+func SchemaSDL() (string, error) {
+	schemaBytes, err := getSchemaBytes()
+	if err != nil {
+		return "", fmt.Errorf("failed to get schema bytes: %w", err)
+	}
+	return string(schemaBytes), nil
+}
+
+// MustSchemaSDL is SchemaSDL for tests, failing the test on error.
+func MustSchemaSDL(t testing.TB) string {
+	sdl, err := SchemaSDL()
+	require.NoError(t, err)
+	return sdl
+}
+
 func ProtoSchema() (string, error) {
 	protoBytes, err := getProtoBytes()
 	if err != nil {

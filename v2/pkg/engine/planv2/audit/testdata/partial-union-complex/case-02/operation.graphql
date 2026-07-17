@@ -1,0 +1,18 @@
+{
+  rootB {
+    wrapper {
+      actions {
+        __typename
+        ... on Common {
+          label
+        }
+        ... on OnlyA {
+          a
+        }
+        ... on OnlyB {
+          b
+        }
+      }
+    }
+  }
+}

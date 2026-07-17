@@ -1,0 +1,19 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@key", "@external", "@provides"]
+      )
+
+    type Query {
+      product: Product
+    }
+
+    interface Product {
+      samePriceProduct: Product
+    }
+
+    type Book implements Product @key(fields: "id") {
+      id: ID!
+      samePriceProduct: Book @provides(fields: "price")
+      price: Float @external
+    }

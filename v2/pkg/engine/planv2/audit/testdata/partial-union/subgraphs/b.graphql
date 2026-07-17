@@ -1,0 +1,17 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.0"
+        import: ["@key", "@shareable"]
+      )
+
+    type Response @shareable {
+      actions: [Action!]!
+      message: String
+    }
+
+    union Action = Alpha
+
+    type Alpha @shareable {
+      id: ID!
+      value: String
+    }

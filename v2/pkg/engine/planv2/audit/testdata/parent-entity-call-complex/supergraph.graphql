@@ -1,0 +1,15 @@
+type Product {
+  id: ID
+  category: Category
+  name: String
+}
+
+type Category {
+  details: String
+  id: ID
+  name: String
+}
+
+type Query {
+  productFromD(id: ID!): Product
+}

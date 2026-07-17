@@ -1,0 +1,16 @@
+{
+  users {
+    id
+    name
+  }
+  accounts {
+    ... on User {
+      id
+      name
+    }
+    ... on Admin {
+      id
+      name
+    }
+  }
+}

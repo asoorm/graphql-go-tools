@@ -1,0 +1,7 @@
+{
+  node(id: "toaster1") {
+    ... on Toaster {
+      warranty
+    }
+  }
+}

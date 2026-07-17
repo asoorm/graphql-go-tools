@@ -1,0 +1,34 @@
+{
+  "data": {
+    "products": [
+      {
+        "reviews": [
+          {
+            "id": "r1",
+            "author": {
+              "username": "u-username-1"
+            },
+            "product": {
+              "name": "p-name-1",
+              "shippingEstimate": 110
+            }
+          }
+        ]
+      },
+      {
+        "reviews": [
+          {
+            "id": "r2",
+            "author": {
+              "username": "u-username-1"
+            },
+            "product": {
+              "name": "p-name-2",
+              "shippingEstimate": 440
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

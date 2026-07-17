@@ -1,0 +1,10 @@
+{
+  "data": {
+    "addProduct": {
+      "name": "new",
+      "price": 599.99,
+      "isExpensive": true,
+      "isAvailable": true
+    }
+  }
+}

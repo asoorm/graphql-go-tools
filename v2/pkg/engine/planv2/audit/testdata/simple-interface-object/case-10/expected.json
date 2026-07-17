@@ -1,0 +1,18 @@
+{
+  "data": {
+    "accounts": [
+      {
+        "name": "Alice",
+        "__typename": "Admin"
+      },
+      {
+        "name": "Bob",
+        "__typename": "Admin"
+      },
+      {
+        "name": "Charlie",
+        "__typename": "Regular"
+      }
+    ]
+  }
+}

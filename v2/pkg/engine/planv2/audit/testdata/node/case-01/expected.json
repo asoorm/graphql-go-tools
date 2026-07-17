@@ -1,0 +1,10 @@
+{
+  "data": {
+    "productNode": {
+      "id": "p-1",
+      "name": "Product 1",
+      "__typename": "Product",
+      "price": 10
+    }
+  }
+}

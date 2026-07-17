@@ -1,0 +1,11 @@
+{
+  products {
+    author: createdBy {
+      email
+      totalProductsCreated
+    }
+    ... on Magazine {
+      title
+    }
+  }
+}

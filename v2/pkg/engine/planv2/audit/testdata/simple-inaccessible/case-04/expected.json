@@ -1,0 +1,24 @@
+{
+  "data": {
+    "usersInFriends": [
+      {
+        "id": "u1",
+        "friends": [
+          {
+            "id": "u2",
+            "type": null
+          }
+        ]
+      },
+      {
+        "id": "u2",
+        "friends": [
+          {
+            "id": "u1",
+            "type": null
+          }
+        ]
+      }
+    ]
+  }
+}

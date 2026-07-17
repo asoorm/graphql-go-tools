@@ -1,0 +1,17 @@
+extend schema
+      @link(url: "https://specs.apollo.dev/federation/v2.3", import: ["@key"])
+
+    type Query {
+      users: [NodeWithName!]!
+    }
+
+    interface NodeWithName @key(fields: "id") {
+      id: ID!
+      name: String
+    }
+
+    type User implements NodeWithName @key(fields: "id") {
+      id: ID!
+      name: String
+      age: Int
+    }

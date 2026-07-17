@@ -1,0 +1,9 @@
+{
+  me {
+    reviews {
+      product {
+        shippingEstimate
+      }
+    }
+  }
+}

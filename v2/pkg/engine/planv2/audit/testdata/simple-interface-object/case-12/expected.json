@@ -1,0 +1,18 @@
+{
+  "data": {
+    "accounts": [
+      {
+        "id": "u1",
+        "isActive": false
+      },
+      {
+        "id": "u2",
+        "isActive": false
+      },
+      {
+        "id": "u3",
+        "isActive": false
+      }
+    ]
+  }
+}

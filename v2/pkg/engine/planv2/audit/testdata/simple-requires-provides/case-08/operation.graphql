@@ -1,0 +1,14 @@
+{
+  products {
+    reviews {
+      id
+      author {
+        username
+      }
+      product {
+        name
+        shippingEstimate
+      }
+    }
+  }
+}

@@ -1,0 +1,2 @@
+plan-success
+Partial-response errors:true case (data present): runs the full assertion chain; the pin makes a future rejection FAIL loudly instead of quietly reclassifying to SKIP.

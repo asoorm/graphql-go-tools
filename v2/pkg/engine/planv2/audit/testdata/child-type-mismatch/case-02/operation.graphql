@@ -1,0 +1,36 @@
+query NestedInternalAlias {
+  users {
+    id
+    name
+  }
+  accounts {
+    ... on User {
+      id
+      name
+      similarAccounts {
+        ... on User {
+          id
+          name
+        }
+        ... on Admin {
+          id
+          name
+        }
+      }
+    }
+    ... on Admin {
+      id
+      name
+      similarAccounts {
+        ... on User {
+          id
+          name
+        }
+        ... on Admin {
+          id
+          name
+        }
+      }
+    }
+  }
+}

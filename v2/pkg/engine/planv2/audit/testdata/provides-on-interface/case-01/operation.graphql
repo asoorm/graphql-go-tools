@@ -1,0 +1,9 @@
+{
+  media {
+    id
+    animals {
+      id
+      name
+    }
+  }
+}

@@ -1,0 +1,31 @@
+type Query {
+  a: User
+  b: User
+}
+
+interface Address {
+  id: ID!
+}
+
+type HomeAddress implements Address {
+  id: ID!
+  city: String
+}
+
+type WorkAddress implements Address {
+  id: ID!
+  city: String
+}
+
+type User {
+  id: ID!
+  name: String!
+  address: Address
+  city: String
+  country: String
+}
+
+type SecondAddress implements Address {
+  id: ID!
+  city: String
+}

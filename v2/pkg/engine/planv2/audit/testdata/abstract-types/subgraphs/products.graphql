@@ -1,0 +1,64 @@
+schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@key", "@shareable", "@inaccessible", "@external"]
+      ) {
+      query: Query
+    }
+
+    type Query {
+      products: [Product]
+      similar(id: ID!): [Product]
+    }
+
+    interface Product {
+      id: ID!
+      sku: String
+      dimensions: ProductDimension
+      createdBy: User
+      hidden: Boolean @inaccessible
+    }
+
+    interface Similar {
+      similar: [Product]
+    }
+
+    type ProductDimension @shareable {
+      size: String
+      weight: Float
+    }
+
+    type Book implements Product & Similar @key(fields: "id") {
+      id: ID!
+      sku: String
+      dimensions: ProductDimension @shareable
+      createdBy: User
+      similar: [Book]
+      hidden: Boolean
+      publisherType: PublisherType
+    }
+
+    type Magazine implements Product & Similar @key(fields: "id") {
+      id: ID!
+      sku: String
+      dimensions: ProductDimension @shareable
+      createdBy: User
+      similar: [Magazine]
+      hidden: Boolean
+      publisherType: PublisherType
+    }
+
+    union PublisherType = Agency | Self
+
+    type Agency {
+      id: ID! @shareable
+    }
+
+    type Self {
+      email: String
+    }
+
+    type User @key(fields: "email") {
+      email: ID!
+      totalProductsCreated: Int @shareable
+    }

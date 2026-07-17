@@ -1,0 +1,6 @@
+{
+  product {
+    id
+    name
+  }
+}

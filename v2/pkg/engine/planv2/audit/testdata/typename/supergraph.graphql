@@ -1,0 +1,30 @@
+type Query {
+  union: Product
+  interface: Node
+  users: [User]
+}
+
+union Product = Oven | Toaster
+
+interface Node {
+  id: ID!
+}
+
+type Oven implements Node {
+  id: ID!
+}
+
+type Toaster implements Node {
+  id: ID!
+}
+
+interface User {
+  id: ID!
+  name: String!
+}
+
+type Admin implements User {
+  id: ID!
+  isMain: Boolean!
+  name: String!
+}

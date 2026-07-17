@@ -1,0 +1,6 @@
+{
+  union {
+    __typename
+    typename: __typename
+  }
+}

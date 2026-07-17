@@ -1,0 +1,27 @@
+type Query {
+  a: Entity
+  b: Entity
+  bb: Entity
+}
+
+type Entity {
+  id: ID!
+  data: Foo
+  requirer: String!
+  requirer2: String!
+}
+
+interface Foo {
+  foo: String!
+}
+
+interface Bar implements Foo {
+  foo: String!
+  bar: String!
+}
+
+type Qux implements Foo & Bar {
+  foo: String!
+  bar: String!
+  qux: String!
+}

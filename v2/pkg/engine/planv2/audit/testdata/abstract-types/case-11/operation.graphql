@@ -1,0 +1,16 @@
+query ($title: Boolean = true) {
+  products {
+    id
+    reviews {
+      product {
+        id
+        ... on Book @skip(if: $title) {
+          title
+        }
+        ... on Magazine {
+          sku
+        }
+      }
+    }
+  }
+}

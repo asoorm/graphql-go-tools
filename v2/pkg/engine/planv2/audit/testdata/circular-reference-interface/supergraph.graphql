@@ -1,0 +1,13 @@
+type Query {
+  product: Product
+}
+
+interface Product {
+  samePriceProduct: Product
+}
+
+type Book implements Product {
+  id: ID!
+  samePriceProduct: Book
+  price: Float
+}

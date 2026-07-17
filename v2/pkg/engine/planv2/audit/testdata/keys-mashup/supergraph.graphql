@@ -1,0 +1,22 @@
+type A {
+  id: ID!
+  pId: ID!
+  compositeId: CompositeID!
+  name: String!
+  nameInB: String!
+}
+
+type CompositeID {
+  one: ID!
+  two: ID!
+  three: ID!
+}
+
+type Query {
+  b: B
+}
+
+type B {
+  id: ID!
+  a: [A!]!
+}

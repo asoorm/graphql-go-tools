@@ -1,0 +1,18 @@
+{
+  "data": {
+    "products": [
+      {
+        "id": "oven1"
+      },
+      {
+        "id": "oven2"
+      },
+      {
+        "id": "toaster1"
+      },
+      {
+        "id": "toaster2"
+      }
+    ]
+  }
+}

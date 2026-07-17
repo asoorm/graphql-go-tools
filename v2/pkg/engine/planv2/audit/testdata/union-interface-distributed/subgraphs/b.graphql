@@ -1,0 +1,15 @@
+extend schema
+      @link(url: "https://specs.apollo.dev/federation/v2.3", import: ["@key"])
+
+    interface Node {
+      id: ID!
+    }
+
+    interface WithWarranty {
+      warranty: Int
+    }
+
+    type Oven implements Node & WithWarranty @key(fields: "id") {
+      id: ID!
+      warranty: Int
+    }

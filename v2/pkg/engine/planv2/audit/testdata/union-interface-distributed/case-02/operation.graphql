@@ -1,0 +1,10 @@
+{
+  nodes {
+    ... on Toaster {
+      warranty
+    }
+    ... on Oven {
+      id
+    }
+  }
+}

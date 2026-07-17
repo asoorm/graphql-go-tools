@@ -1,0 +1,23 @@
+extend schema
+      @link(url: "https://specs.apollo.dev/federation/v2.3", import: ["@key"])
+
+    type Query {
+      media: Media
+    }
+
+    interface Media @key(fields: "id") {
+      id: ID!
+      title: String
+    }
+
+    type Video implements Media @key(fields: "id") {
+      id: ID!
+      title: String
+      duration: Int
+    }
+
+    type Article implements Media @key(fields: "id") {
+      id: ID!
+      title: String
+      wordCount: Int
+    }

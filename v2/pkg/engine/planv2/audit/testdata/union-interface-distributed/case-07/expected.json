@@ -1,0 +1,14 @@
+{
+  "data": {
+    "toasters": [
+      {
+        "id": "toaster1",
+        "__typename": "Toaster"
+      },
+      {
+        "id": "toaster2",
+        "__typename": "Toaster"
+      }
+    ]
+  }
+}

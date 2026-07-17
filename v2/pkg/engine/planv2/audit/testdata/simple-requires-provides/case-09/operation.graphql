@@ -1,0 +1,11 @@
+{
+  me {
+    reviews {
+      product {
+        reviews {
+          id
+        }
+      }
+    }
+  }
+}

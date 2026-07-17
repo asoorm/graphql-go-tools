@@ -1,0 +1,19 @@
+type Query {
+  productNode: Node
+  categoryNode: Node
+}
+
+interface Node {
+  id: ID!
+}
+
+type Product implements Node {
+  id: ID!
+  name: String!
+  price: Float!
+}
+
+type Category implements Node {
+  id: ID!
+  name: String!
+}

@@ -1,0 +1,14 @@
+{
+  "data": {
+    "feed": [
+      {
+        "id": "i1",
+        "createdAt": "i1-createdAt"
+      },
+      {
+        "id": "i2",
+        "createdAt": "i2-createdAt"
+      }
+    ]
+  }
+}

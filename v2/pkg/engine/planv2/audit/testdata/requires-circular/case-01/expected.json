@@ -1,0 +1,12 @@
+{
+  "data": {
+    "feed": [
+      {
+        "byNovice": true
+      },
+      {
+        "byNovice": false
+      }
+    ]
+  }
+}

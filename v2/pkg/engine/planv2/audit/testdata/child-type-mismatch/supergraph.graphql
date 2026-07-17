@@ -1,0 +1,18 @@
+type User {
+  id: ID
+  name: String
+  similarAccounts: [Account!]!
+}
+
+type Query {
+  users: [User!]!
+  accounts: [Account!]!
+}
+
+union Account = User | Admin
+
+type Admin {
+  id: ID
+  name: String
+  similarAccounts: [Account!]!
+}

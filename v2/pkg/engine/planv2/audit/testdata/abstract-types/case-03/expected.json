@@ -1,0 +1,24 @@
+{
+  "data": {
+    "book": [
+      {
+        "id": "p3",
+        "sku": "sku-3",
+        "delivery": {
+          "fastestDelivery": "same day",
+          "estimatedDelivery": "1 day"
+        }
+      }
+    ],
+    "magazine": [
+      {
+        "id": "p4",
+        "sku": "sku-4",
+        "delivery": {
+          "fastestDelivery": "same day",
+          "estimatedDelivery": "1 day"
+        }
+      }
+    ]
+  }
+}

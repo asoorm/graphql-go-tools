@@ -1,0 +1,7 @@
+{
+  anotherUsers {
+    ... on User {
+      age
+    }
+  }
+}

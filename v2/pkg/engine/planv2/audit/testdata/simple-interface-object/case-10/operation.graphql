@@ -1,0 +1,6 @@
+{
+  accounts {
+    name
+    __typename
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "data": {
+    "products": [
+      {
+        "sku": "sku-1",
+        "__typename": "Book",
+        "type": "Book"
+      },
+      {
+        "sku": "sku-3",
+        "__typename": "Book",
+        "type": "Book"
+      },
+      {
+        "sku": "sku-2",
+        "__typename": "Magazine",
+        "type": "Magazine"
+      },
+      {
+        "sku": "sku-4",
+        "__typename": "Magazine",
+        "type": "Magazine"
+      }
+    ]
+  }
+}

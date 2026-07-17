@@ -1,0 +1,14 @@
+{
+  "data": {
+    "nodes": [
+      {
+        "id": "toaster1",
+        "warranty": 3
+      },
+      {
+        "id": "toaster2",
+        "warranty": 4
+      }
+    ]
+  }
+}

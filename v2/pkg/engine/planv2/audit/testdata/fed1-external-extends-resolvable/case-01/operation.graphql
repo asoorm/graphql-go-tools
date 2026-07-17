@@ -1,0 +1,9 @@
+{
+  productInA {
+    id
+    pid
+    price
+    upc
+    name
+  }
+}

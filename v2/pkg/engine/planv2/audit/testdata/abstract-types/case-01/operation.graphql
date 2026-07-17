@@ -1,0 +1,9 @@
+{
+  products {
+    id
+    dimensions {
+      size
+      weight
+    }
+  }
+}

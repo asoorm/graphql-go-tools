@@ -1,0 +1,23 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@shareable", "@key"]
+      )
+
+    union Account = User | Admin
+
+    type User @key(fields: "id") {
+      id: ID!
+      name: String
+      similarAccounts: [Account!]!
+    }
+
+    type Admin {
+      id: ID
+      name: String @shareable
+      similarAccounts: [Account!]!
+    }
+
+    type Query {
+      accounts: [Account!]!
+    }

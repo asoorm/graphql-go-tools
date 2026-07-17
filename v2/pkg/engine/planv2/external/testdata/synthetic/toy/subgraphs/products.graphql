@@ -1,0 +1,14 @@
+type Query {
+  topProducts: [Product!]!
+}
+
+type Product @key(fields: "upc") {
+  upc: String!
+  name: String!
+  price: Int!
+}
+
+type User @key(fields: "id") {
+  id: ID! @external
+  reviews: [Product!]!
+}

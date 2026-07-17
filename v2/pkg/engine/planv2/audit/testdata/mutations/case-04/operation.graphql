@@ -1,0 +1,6 @@
+mutation {
+  addCategory(name: "new", requestId: "e5fc2bb4d9113") {
+    id
+    name
+  }
+}

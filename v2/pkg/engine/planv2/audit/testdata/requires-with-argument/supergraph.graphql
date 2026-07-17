@@ -1,0 +1,36 @@
+type Product {
+  upc: String!
+  weight: Int
+  price(currency: String!): Int
+  shippingEstimate: Int
+  category: Category
+  isExpensiveCategory: Boolean
+  name: String
+}
+
+type Category {
+  averagePrice(currency: String!): Int
+}
+
+type Query {
+  products: [Product]
+  feed: [Post]
+}
+
+type Post {
+  id: ID!
+  author: Author
+  comments(limit: Int!): [Comment]
+}
+
+type Comment {
+  id: ID!
+  authorId: ID
+  body: String!
+  date: String
+}
+
+type Author {
+  id: ID!
+  name: String
+}

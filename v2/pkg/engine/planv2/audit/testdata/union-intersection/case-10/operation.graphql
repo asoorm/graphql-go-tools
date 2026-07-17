@@ -1,0 +1,9 @@
+{
+  aMedia {
+    ... on Book {
+      title
+      aTitle
+      bTitle
+    }
+  }
+}

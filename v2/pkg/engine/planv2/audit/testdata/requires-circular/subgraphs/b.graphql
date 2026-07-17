@@ -1,0 +1,16 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@key", "@external", "@requires"]
+      )
+
+    type Post @key(fields: "id") {
+      id: ID!
+      author: Author!
+      byNovice: Boolean! @requires(fields: "author { yearsOfExperience }")
+    }
+
+    type Author @key(fields: "id") {
+      id: ID!
+      yearsOfExperience: Int! @external
+    }

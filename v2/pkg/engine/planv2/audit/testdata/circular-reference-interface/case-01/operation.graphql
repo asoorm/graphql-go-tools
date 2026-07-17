@@ -1,0 +1,11 @@
+{
+  product {
+    samePriceProduct {
+      ... on Product {
+        samePriceProduct {
+          __typename
+        }
+      }
+    }
+  }
+}

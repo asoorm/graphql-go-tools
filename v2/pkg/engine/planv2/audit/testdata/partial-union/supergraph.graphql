@@ -1,0 +1,26 @@
+type Query {
+  getResponse: Response
+}
+
+type Response {
+  actions: [Action!]!
+  message: String
+}
+
+union Action = Alpha | Beta | Gamma
+
+type Alpha {
+  id: ID!
+  value: String
+}
+
+type Beta {
+  id: ID!
+  name: String
+  details: String
+}
+
+type Gamma {
+  id: ID!
+  label: String
+}

@@ -1,0 +1,40 @@
+{
+  viewer {
+    media {
+      __typename
+      ... on Song {
+        title
+      }
+      ... on Movie {
+        title
+      }
+      ... on Book {
+        title
+      }
+    }
+    book {
+      __typename
+      ... on Song {
+        title
+      }
+      ... on Movie {
+        title
+      }
+      ... on Book {
+        title
+      }
+    }
+    song {
+      __typename
+      ... on Song {
+        title
+      }
+      ... on Movie {
+        title
+      }
+      ... on Book {
+        title
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.5"
+        import: [
+          "@key"
+          "@shareable"
+          "@inaccessible"
+          "@external"
+          "@requires"
+        ]
+      )
+
+    type Query @shareable {
+      b: Entity
+      bb: Entity
+    }
+
+    type Entity @key(fields: "id") {
+      id: ID!
+      data: Foo @external
+      requirer: String!
+        @requires(
+          fields: """
+          data {
+            foo
+            ... on Bar {
+              bar
+              ... on Baz {
+                baz
+              }
+              ... on Qux {
+                qux
+              }
+            }
+          }
+          """
+        )
+      requirer2: String!
+        @requires(
+          fields: """
+          data {
+            ... on Foo {
+              foo
+            }
+          }
+          """
+        )
+    }
+
+    interface Foo {
+      foo: String!
+    }
+
+    interface Bar implements Foo {
+      foo: String!
+      bar: String!
+    }
+
+    type Baz implements Foo & Bar @shareable @inaccessible {
+      foo: String!
+      bar: String!
+      baz: String!
+    }
+
+    type Qux implements Foo & Bar @shareable {
+      foo: String!
+      bar: String!
+      qux: String!
+    }

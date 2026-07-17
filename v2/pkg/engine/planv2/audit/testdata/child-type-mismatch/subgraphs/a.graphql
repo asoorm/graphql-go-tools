@@ -1,0 +1,13 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@shareable"]
+      )
+
+    type User {
+      id: ID @shareable
+    }
+
+    type Query {
+      users: [User!]!
+    }

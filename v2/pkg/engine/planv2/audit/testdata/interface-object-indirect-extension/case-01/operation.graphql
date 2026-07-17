@@ -1,0 +1,27 @@
+{
+  media {
+    id
+    title
+    ... on Video {
+      duration
+      authorName
+    }
+    ... on Article {
+      wordCount
+    }
+  }
+  author {
+    id
+    name
+  }
+  playlist {
+    id
+    name
+    media {
+      id
+      ... on Video {
+        duration
+      }
+    }
+  }
+}

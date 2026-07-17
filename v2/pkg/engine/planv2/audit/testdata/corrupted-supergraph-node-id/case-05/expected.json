@@ -1,0 +1,10 @@
+{
+  "data": {
+    "account": {
+      "__typename": "Account"
+    },
+    "chat": {
+      "__typename": "Chat"
+    }
+  }
+}

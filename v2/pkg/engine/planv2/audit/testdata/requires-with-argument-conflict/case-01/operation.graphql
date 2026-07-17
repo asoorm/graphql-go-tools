@@ -1,0 +1,9 @@
+{
+  products {
+    upc
+    name
+    shippingEstimate
+    shippingEstimateEUR
+    isExpensiveCategory
+  }
+}

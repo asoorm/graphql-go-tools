@@ -1,0 +1,13 @@
+{
+  getResponse {
+    actions {
+      __typename
+      ... on Beta {
+        name
+      }
+      ... on Gamma {
+        label
+      }
+    }
+  }
+}

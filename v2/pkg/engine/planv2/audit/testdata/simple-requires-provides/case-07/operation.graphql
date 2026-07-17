@@ -1,0 +1,7 @@
+{
+  products {
+    shippingEstimate
+    weight
+    price
+  }
+}

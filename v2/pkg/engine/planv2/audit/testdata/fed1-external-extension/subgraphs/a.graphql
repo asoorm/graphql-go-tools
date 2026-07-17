@@ -1,0 +1,10 @@
+type Query {
+      randomUser: User
+      providedRandomUser: User @provides(fields: "name")
+    }
+
+    extend type User @key(fields: "id") {
+      id: ID! @external
+      name: String! @external
+      rid: ID
+    }

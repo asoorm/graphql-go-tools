@@ -1,0 +1,7 @@
+{
+  product {
+    ... on Bread {
+      id
+    }
+  }
+}

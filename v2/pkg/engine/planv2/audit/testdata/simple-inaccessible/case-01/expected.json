@@ -1,0 +1,22 @@
+{
+  "data": {
+    "usersInAge": [
+      {
+        "id": "u1",
+        "friends": [
+          {
+            "id": "u2"
+          }
+        ]
+      },
+      {
+        "id": "u2",
+        "friends": [
+          {
+            "id": "u1"
+          }
+        ]
+      }
+    ]
+  }
+}

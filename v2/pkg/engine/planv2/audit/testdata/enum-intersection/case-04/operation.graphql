@@ -1,0 +1,6 @@
+{
+  usersByType(type: REGULAR) {
+    id
+    type
+  }
+}

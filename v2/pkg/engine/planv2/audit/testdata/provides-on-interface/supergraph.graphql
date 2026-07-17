@@ -1,0 +1,31 @@
+type Query {
+  media: Media
+  book: Book
+}
+
+interface Media {
+  id: ID!
+  animals: [Animal]
+}
+
+interface Animal {
+  id: ID!
+  name: String
+}
+
+type Book implements Media {
+  id: ID!
+  animals: [Animal]
+}
+
+type Dog implements Animal {
+  id: ID!
+  name: String
+  age: Int
+}
+
+type Cat implements Animal {
+  id: ID!
+  name: String
+  age: Int
+}

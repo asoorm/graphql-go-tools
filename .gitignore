@@ -8,3 +8,19 @@ pkg/parser/testdata/lotto.graphql
 *vendor*
 /.cursorrules
 .serena
+# planner-v2 external-corpus harness: run reports must NEVER be committed (privacy rule --
+# defense-in-depth; the loader also refuses in-repo corpus dirs at runtime).
+# See v2/docs/planner-v2/EXTERNAL_CORPUS.md.
+.external-corpus-report/
+# The corpus-sweep tests themselves stay local (they contain no private data -- the corpus
+# is reached only via the PLANNER_V2_EXTERNAL_CORPUS env var -- but they are not for upstream).
+v2/pkg/engine/planv2/external/execconfig_corpus_test.go
+v2/pkg/engine/planv2/external/reachability_classify_test.go
+.superpowers/
+PROGRESS.md
+.gstack/
+ci-logs.txt
+v2/_compat/
+v2/demo
+v2/cmd/
+internal-notes/

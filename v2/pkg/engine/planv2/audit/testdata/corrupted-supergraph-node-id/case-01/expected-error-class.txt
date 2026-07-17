@@ -1,0 +1,2 @@
+plan-success
+The expected errors are RUNTIME errors (the corrupted node id fails at resolution); plan level must plan cleanly and pass assertions 2-8.

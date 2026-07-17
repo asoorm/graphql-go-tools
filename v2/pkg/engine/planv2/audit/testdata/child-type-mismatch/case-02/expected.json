@@ -1,0 +1,40 @@
+{
+  "data": {
+    "users": [
+      {
+        "id": "u1",
+        "name": "u1-name"
+      }
+    ],
+    "accounts": [
+      {
+        "id": "u1",
+        "name": "u1-name",
+        "similarAccounts": [
+          {
+            "id": "u1",
+            "name": "u1-name"
+          },
+          {
+            "id": "a1",
+            "name": "a1-name"
+          }
+        ]
+      },
+      {
+        "id": "a1",
+        "name": "a1-name",
+        "similarAccounts": [
+          {
+            "id": "u1",
+            "name": "u1-name"
+          },
+          {
+            "id": "a1",
+            "name": "a1-name"
+          }
+        ]
+      }
+    ]
+  }
+}

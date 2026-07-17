@@ -1,0 +1,19 @@
+{
+  product {
+    id
+    name {
+      id
+      brand
+      model
+    }
+    category {
+      id
+      name
+    }
+    price {
+      id
+      amount
+      currency
+    }
+  }
+}

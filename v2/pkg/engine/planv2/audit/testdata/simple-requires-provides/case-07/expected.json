@@ -1,0 +1,16 @@
+{
+  "data": {
+    "products": [
+      {
+        "shippingEstimate": 110,
+        "weight": 1,
+        "price": 11
+      },
+      {
+        "shippingEstimate": 440,
+        "weight": 2,
+        "price": 22
+      }
+    ]
+  }
+}

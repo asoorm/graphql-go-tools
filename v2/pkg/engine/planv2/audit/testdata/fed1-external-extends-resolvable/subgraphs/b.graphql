@@ -1,0 +1,10 @@
+type Query {
+      productInB: Product
+    }
+
+    extend type Product @key(fields: "id name") @key(fields: "upc") {
+      id: ID @external
+      name: String @external
+      upc: String @external
+      price: Float!
+    }

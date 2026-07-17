@@ -1,0 +1,8 @@
+{
+  interface {
+    id
+    __typename
+    typename: __typename
+    t: __typename
+  }
+}

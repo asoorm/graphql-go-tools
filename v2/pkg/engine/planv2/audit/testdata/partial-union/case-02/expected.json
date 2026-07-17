@@ -1,0 +1,19 @@
+{
+  "data": {
+    "getResponse": {
+      "actions": [
+        {
+          "__typename": "Alpha"
+        },
+        {
+          "__typename": "Beta",
+          "name": "beta name"
+        },
+        {
+          "__typename": "Gamma",
+          "label": "gamma label"
+        }
+      ]
+    }
+  }
+}

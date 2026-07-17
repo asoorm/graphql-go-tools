@@ -1,0 +1,9 @@
+{
+  products {
+    id
+    categories {
+      id
+      name
+    }
+  }
+}

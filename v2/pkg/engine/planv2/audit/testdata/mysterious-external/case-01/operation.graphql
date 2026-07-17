@@ -1,0 +1,7 @@
+{
+  cheapestProduct {
+    id
+    price
+    name
+  }
+}

@@ -1,0 +1,12 @@
+{
+  media {
+    id
+    animals {
+      id
+      name
+      ... on Cat {
+        age
+      }
+    }
+  }
+}

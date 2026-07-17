@@ -1,0 +1,9 @@
+{
+  usersInFriends {
+    id
+    friends {
+      id
+      type
+    }
+  }
+}

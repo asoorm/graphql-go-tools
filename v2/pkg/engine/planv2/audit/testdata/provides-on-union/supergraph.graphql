@@ -1,0 +1,15 @@
+type Query {
+  media: [Media]
+}
+
+union Media = Book | Movie
+
+type Book {
+  id: ID!
+  title: String
+}
+
+type Movie {
+  id: ID!
+  title: String
+}

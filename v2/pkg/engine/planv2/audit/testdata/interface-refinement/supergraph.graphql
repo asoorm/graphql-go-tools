@@ -1,0 +1,16 @@
+type Query {
+  item: Node
+}
+
+interface Node {
+  id: ID!
+}
+
+interface Detail {
+  title: String
+}
+
+type Article implements Node & Detail {
+  id: ID!
+  title: String
+}

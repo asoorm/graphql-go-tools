@@ -1,0 +1,9 @@
+{
+  chat(id: "c1") {
+    id
+    text
+    account {
+      id
+    }
+  }
+}

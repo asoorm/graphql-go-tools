@@ -1,0 +1,16 @@
+query ($title: Boolean = false) {
+  products {
+    id
+    reviews {
+      product {
+        id
+        ... on Book @include(if: $title) {
+          title
+        }
+        ... on Magazine {
+          sku
+        }
+      }
+    }
+  }
+}

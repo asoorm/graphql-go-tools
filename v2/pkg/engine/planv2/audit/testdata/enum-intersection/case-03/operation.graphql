@@ -1,0 +1,6 @@
+{
+  usersB {
+    id
+    type
+  }
+}

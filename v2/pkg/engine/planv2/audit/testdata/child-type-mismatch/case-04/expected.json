@@ -1,0 +1,60 @@
+{
+  "data": {
+    "accounts": [
+      {
+        "name": "u1-name",
+        "similarAccounts": [
+          {
+            "name": "u1-name",
+            "similarAccounts": [
+              {
+                "name": "u1-name"
+              },
+              {
+                "name": "a1-name"
+              }
+            ]
+          },
+          {
+            "name": "a1-name",
+            "similarAccounts": [
+              {
+                "name": "u1-name"
+              },
+              {
+                "name": "a1-name"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "a1-name",
+        "similarAccounts": [
+          {
+            "name": "u1-name",
+            "similarAccounts": [
+              {
+                "name": "u1-name"
+              },
+              {
+                "name": "a1-name"
+              }
+            ]
+          },
+          {
+            "name": "a1-name",
+            "similarAccounts": [
+              {
+                "name": "u1-name"
+              },
+              {
+                "name": "a1-name"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

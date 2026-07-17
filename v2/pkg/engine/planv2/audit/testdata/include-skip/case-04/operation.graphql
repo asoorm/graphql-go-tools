@@ -1,0 +1,6 @@
+query ($bool: Boolean = false) {
+  product {
+    price
+    skip @skip(if: $bool)
+  }
+}

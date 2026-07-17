@@ -1,0 +1,49 @@
+{
+  "data": {
+    "products": [
+      {
+        "id": "p1",
+        "reviews": [
+          {
+            "product": {
+              "id": "p1",
+              "publisherType": {
+                "email": "u1@example.com"
+              }
+            }
+          },
+          {
+            "product": {
+              "id": "p1",
+              "publisherType": {
+                "email": "u1@example.com"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "reviews": []
+      },
+      {
+        "id": "p2",
+        "reviews": [
+          {
+            "product": {
+              "id": "p2",
+              "publisherType": {
+                "id": "a1",
+                "companyName": "Agency 1"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "reviews": []
+      }
+    ]
+  }
+}

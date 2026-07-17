@@ -1,0 +1,11 @@
+{
+  interface {
+    __typename
+    ... on Oven {
+      typename: __typename
+    }
+    ... on Toaster {
+      typename: __typename
+    }
+  }
+}

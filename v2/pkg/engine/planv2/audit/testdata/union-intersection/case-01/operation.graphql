@@ -1,0 +1,7 @@
+{
+  media {
+    ... on Movie {
+      title
+    }
+  }
+}

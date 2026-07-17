@@ -1,0 +1,31 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@shareable", "@key"]
+      )
+
+    type Query {
+      products: [Product]
+      node(id: ID!): Node
+      nodes: [Node]
+      toasters: [Toaster]
+    }
+
+    union Product = Oven | Toaster
+
+    interface Node {
+      id: ID!
+    }
+
+    interface WithWarranty {
+      warranty: Int
+    }
+
+    type Oven @key(fields: "id") {
+      id: ID!
+    }
+
+    type Toaster implements Node & WithWarranty @key(fields: "id") {
+      id: ID!
+      warranty: Int
+    }

@@ -1,0 +1,13 @@
+{
+  "data": {
+    "account": {
+      "id": "a1",
+      "username": "a1-username",
+      "chats": [
+        {
+          "id": "c1"
+        }
+      ]
+    }
+  }
+}

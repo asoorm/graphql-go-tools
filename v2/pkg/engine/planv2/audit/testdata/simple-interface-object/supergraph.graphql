@@ -1,0 +1,38 @@
+type Query {
+  users: [NodeWithName!]!
+  anotherUsers: [NodeWithName]
+  accounts: [Account]
+}
+
+interface NodeWithName {
+  id: ID!
+  name: String
+  username: String
+}
+
+type User implements NodeWithName {
+  id: ID!
+  name: String
+  age: Int
+  username: String
+}
+
+interface Account {
+  id: ID!
+  name: String!
+  isActive: Boolean!
+}
+
+type Admin implements Account {
+  id: ID!
+  isMain: Boolean!
+  isActive: Boolean!
+  name: String!
+}
+
+type Regular implements Account {
+  id: ID!
+  isMain: Boolean!
+  name: String!
+  isActive: Boolean!
+}

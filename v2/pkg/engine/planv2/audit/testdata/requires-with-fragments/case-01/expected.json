@@ -1,0 +1,14 @@
+{
+  "data": {
+    "b": {
+      "id": "e1",
+      "data": null
+    },
+    "bb": {
+      "id": "e2",
+      "data": {
+        "__typename": "Qux"
+      }
+    }
+  }
+}

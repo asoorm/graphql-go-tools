@@ -1,0 +1,6 @@
+{
+  similar(id: "p1") {
+    id
+    sku
+  }
+}

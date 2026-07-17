@@ -1,0 +1,10 @@
+{
+  "data": {
+    "b": {
+      "address": {
+        "__typename": "WorkAddress",
+        "id": "a2"
+      }
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  bb {
+    data {
+      __typename
+    }
+    requirer2
+  }
+}

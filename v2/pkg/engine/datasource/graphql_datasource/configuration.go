@@ -99,6 +99,56 @@ func (c *Configuration) IsGRPC() bool {
 	return c.grpc != nil
 }
 
+// GRPCConfiguration returns the datasource's gRPC/ConnectRPC configuration (proto compiler, GraphQL
+// <-> proto mapping, disabled flag) and true, or a nil pointer and false when the datasource is not
+// gRPC-configured.
+//
+// Read-only accessor mirroring FetchConfiguration/SubscriptionConfiguration, added for planner-v2
+// transport lowering (M4.3). v1 reads the same fields inside the datasource planner's ConfigureFetch
+// (p.config.grpc.Mapping / .Compiler / .Disabled) to build the executable grpc_datasource.DataSource;
+// planner-v2 retains plan.Configuration only through NewPlanner and needs the per-subgraph mapping and
+// compiler to construct the same DataSource. The stored pointer is returned (the mapping/compiler are
+// large, shared, read-only planning inputs -- copying them is neither cheap nor necessary), so callers
+// must treat it as read-only.
+func (c *Configuration) GRPCConfiguration() (*grpcdatasource.GRPCConfiguration, bool) {
+	if c.grpc == nil {
+		return nil, false
+	}
+	return c.grpc, true
+}
+
+// FetchConfiguration returns the datasource's HTTP fetch transport (URL, method, headers) and true,
+// or a zero value and false when the datasource carries no fetch config (subscription-only / gRPC).
+//
+// Read-only accessor added for planner-v2 transport lowering (M1.5). v1 reads the same fields inside
+// the datasource planner's ConfigureFetch (p.config.fetch.URL / .Method / .Header) to build the
+// executable Input envelope; planner-v2 retains plan.Configuration only through NewPlanner and needs
+// the per-subgraph URL/method/header to emit the same envelope. A copy is returned so callers cannot
+// mutate the datasource's stored configuration.
+func (c *Configuration) FetchConfiguration() (FetchConfiguration, bool) {
+	if c.fetch == nil {
+		return FetchConfiguration{}, false
+	}
+	return *c.fetch, true
+}
+
+// SubscriptionConfiguration returns the datasource's subscription transport (URL, headers, SSE/WS
+// options, startup hooks) and true, or a zero value and false when the datasource carries no
+// subscription config (fetch-only / gRPC).
+//
+// Read-only accessor mirroring FetchConfiguration, added for planner-v2 subscription lowering
+// (D11.12). v1 reads the same fields inside the datasource planner's ConfigureSubscription
+// (p.config.subscription.URL / .UseSSE / .WsSubProtocol / ...) to build the trigger input envelope;
+// planner-v2 retains plan.Configuration only through NewPlanner and needs the per-subgraph
+// subscription wire fields to emit the same envelope. A copy is returned so callers cannot mutate
+// the datasource's stored configuration.
+func (c *Configuration) SubscriptionConfiguration() (SubscriptionConfiguration, bool) {
+	if c.subscription == nil {
+		return SubscriptionConfiguration{}, false
+	}
+	return *c.subscription, true
+}
+
 type SingleTypeField struct {
 	TypeName  string
 	FieldName string

@@ -1,0 +1,8 @@
+{
+  me {
+    id
+    reviews {
+      id
+    }
+  }
+}

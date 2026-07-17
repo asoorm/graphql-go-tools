@@ -1,0 +1,34 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@key", "@shareable"]
+      )
+
+    type Query {
+      b: User
+    }
+
+    interface Address {
+      id: ID!
+    }
+
+    type HomeAddress implements Address @key(fields: "id") {
+      id: ID!
+      city: String @shareable
+    }
+
+    type WorkAddress implements Address @key(fields: "id") {
+      id: ID!
+      city: String @shareable
+    }
+
+    type SecondAddress implements Address @key(fields: "id") {
+      id: ID!
+      city: String @shareable
+    }
+
+    type User @key(fields: "id") {
+      id: ID!
+      name: String! @shareable
+      address: Address @shareable
+    }

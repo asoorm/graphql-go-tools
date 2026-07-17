@@ -1,0 +1,9 @@
+type Query {
+      productInA: Product
+    }
+
+    type Product @key(fields: "id") {
+      id: ID!
+      name: String
+      pid: ID
+    }

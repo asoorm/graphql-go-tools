@@ -1,0 +1,98 @@
+type Agency {
+  id: ID!
+  companyName: String
+  email: Email
+}
+
+type Email {
+  address: String
+}
+
+type Group {
+  id: ID!
+  name: String
+  email: String
+}
+
+union PublisherType = Agency | Group | Self
+
+type Query {
+  books: [Book]
+  magazines: [Magazine]
+  products: [Product]
+  similar(id: ID!): [Product]
+  review(id: Int!): Review
+}
+
+type Book implements Product & Similar {
+  id: ID!
+  title: String
+  dimensions: ProductDimension
+  delivery(zip: String): DeliveryEstimates
+  sku: String
+  createdBy: User
+  similar: [Book]
+  hidden: Boolean
+  publisherType: PublisherType
+  reviewsCount: Int!
+  reviewsScore: Float!
+  reviews: [Review!]!
+  reviewsOfSimilar: [Review!]!
+}
+
+interface Product {
+  id: ID!
+  dimensions: ProductDimension
+  delivery(zip: String): DeliveryEstimates
+  sku: String
+  createdBy: User
+  reviewsCount: Int!
+  reviewsScore: Float!
+  reviews: [Review!]!
+}
+
+type Magazine implements Product & Similar {
+  id: ID!
+  dimensions: ProductDimension
+  delivery(zip: String): DeliveryEstimates
+  title: String
+  sku: String
+  createdBy: User
+  similar: [Magazine]
+  hidden: Boolean
+  publisherType: PublisherType
+  reviewsCount: Int!
+  reviewsScore: Float!
+  reviews: [Review!]!
+  reviewsOfSimilar: [Review!]!
+}
+
+type ProductDimension {
+  size: String
+  weight: Float
+}
+
+type DeliveryEstimates {
+  estimatedDelivery: String
+  fastestDelivery: String
+}
+
+interface Similar {
+  similar: [Product]
+}
+
+type Self {
+  email: String
+}
+
+type User {
+  email: ID!
+  totalProductsCreated: Int
+  name: String
+}
+
+type Review {
+  id: Int!
+  body: String!
+  product: Product
+}

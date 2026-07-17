@@ -1,0 +1,10 @@
+type Post {
+  id: ID!
+  createdAt: String!
+}
+
+type Query {
+  feed: [Post]
+  aFeed: [Post]
+  bFeed: [Post]
+}

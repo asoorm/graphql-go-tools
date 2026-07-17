@@ -1,0 +1,12 @@
+type User {
+  id: ID!
+  name: String!
+  aName: String!
+  cName: String!
+}
+
+type Query {
+  userInA: User
+  userInB: User
+  userInC: User
+}

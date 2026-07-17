@@ -1,0 +1,20 @@
+type Product {
+  id: ID!
+  categories: [Category]
+}
+
+type Query {
+  products: [Product]
+}
+
+type Category {
+  id: ID!
+
+  """
+  This field is provided by Query.products
+  and we deliberately don't resolve it.
+  The test suite is about checking if @provides is used correctly.
+  """
+  name: String
+  subCategories: [Category]
+}

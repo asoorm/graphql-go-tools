@@ -1,0 +1,14 @@
+type Query {
+  users: [User]
+  usersByType(type: UserType!): [User!]
+  usersB: [User!]
+}
+
+type User {
+  id: ID
+  type: UserType
+}
+
+enum UserType {
+  REGULAR
+}

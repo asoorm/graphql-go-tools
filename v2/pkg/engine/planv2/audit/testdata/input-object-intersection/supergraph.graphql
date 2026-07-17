@@ -1,0 +1,13 @@
+input UsersFilter {
+  first: Int!
+}
+
+type User {
+  id: ID!
+  name: String!
+}
+
+type Query {
+  usersInA(filter: UsersFilter!): [User!]
+  usersInB(filter: UsersFilter!): [User!]
+}

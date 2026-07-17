@@ -1,0 +1,14 @@
+{
+  "data": {
+    "media": [
+      {
+        "id": "m1",
+        "title": "Book 1"
+      },
+      {
+        "id": "m2",
+        "title": "Movie 1"
+      }
+    ]
+  }
+}

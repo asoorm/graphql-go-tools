@@ -1,0 +1,34 @@
+type Query {
+  media: Media
+  author: Author
+  playlist: Playlist
+}
+
+interface Media {
+  id: ID!
+  title: String
+}
+
+type Video implements Media {
+  id: ID!
+  title: String
+  duration: Int
+  authorName: String
+}
+
+type Article implements Media {
+  id: ID!
+  title: String
+  wordCount: Int
+}
+
+type Author {
+  id: ID!
+  name: String
+}
+
+type Playlist {
+  id: ID!
+  name: String
+  media: Media
+}

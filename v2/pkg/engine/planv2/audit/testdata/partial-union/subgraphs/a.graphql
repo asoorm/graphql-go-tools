@@ -1,0 +1,32 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.0"
+        import: ["@key", "@shareable"]
+      )
+
+    type Query {
+      getResponse: Response
+    }
+
+    type Response @shareable {
+      actions: [Action!]!
+      message: String
+    }
+
+    union Action = Alpha | Beta | Gamma
+
+    type Alpha @shareable {
+      id: ID!
+      value: String
+    }
+
+    type Beta {
+      id: ID!
+      name: String
+      details: String
+    }
+
+    type Gamma {
+      id: ID!
+      label: String
+    }

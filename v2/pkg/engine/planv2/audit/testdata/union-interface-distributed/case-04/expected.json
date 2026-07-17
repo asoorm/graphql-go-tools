@@ -1,0 +1,12 @@
+{
+  "data": {
+    "nodes": [
+      {
+        "id": "toaster1"
+      },
+      {
+        "id": "toaster2"
+      }
+    ]
+  }
+}

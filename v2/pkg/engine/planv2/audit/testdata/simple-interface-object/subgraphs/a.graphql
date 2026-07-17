@@ -1,0 +1,35 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@key", "@shareable"]
+      )
+
+    type Query {
+      users: [NodeWithName!]!
+    }
+
+    interface NodeWithName @key(fields: "id") {
+      id: ID!
+      name: String
+    }
+
+    type User implements NodeWithName @key(fields: "id") {
+      id: ID!
+      name: String
+      age: Int
+    }
+
+    interface Account @key(fields: "id") {
+      id: ID!
+    }
+
+    type Admin implements Account @key(fields: "id") {
+      id: ID!
+      isMain: Boolean!
+      isActive: Boolean! @shareable
+    }
+
+    type Regular implements Account @key(fields: "id") {
+      id: ID!
+      isMain: Boolean!
+    }

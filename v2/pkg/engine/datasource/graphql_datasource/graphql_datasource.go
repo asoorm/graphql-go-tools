@@ -366,11 +366,6 @@ func (p *Planner[T]) ConfigureFetch() resolve.FetchConfiguration {
 			return resolve.FetchConfiguration{}
 		}
 
-		if p.rpcTransport == nil {
-			p.stopWithError(errors.WithStack(errors.New("grpc / connect configuration requires an rpc transport")))
-			return resolve.FetchConfiguration{}
-		}
-
 		dataSource, err = grpcdatasource.NewDataSource(p.rpcTransport, grpcdatasource.DataSourceConfig{
 			Operation:         &opDocument,
 			Definition:        p.config.schemaConfiguration.upstreamSchemaAst,
@@ -1910,6 +1905,19 @@ type Source struct {
 	httpClient *http.Client
 }
 
+// NewSource returns the resolve.DataSource that performs a GraphQL subgraph HTTP round-trip on the
+// given client. It is the exported constructor for the very *Source that ConfigureFetch builds
+// internally (`&Source{httpClient: p.fetchClient}`), so the executed transport is byte-for-byte the
+// production path -- no client is reimplemented. Added for planner-v2 transport lowering (M1.5), which
+// attaches an executable FetchConfiguration.DataSource per subgraph without driving the full v1
+// datasource planner. A nil client falls back to http.DefaultClient (httpclient.Do requires a client).
+func NewSource(httpClient *http.Client) resolve.DataSource {
+	if httpClient == nil {
+		httpClient = http.DefaultClient
+	}
+	return &Source{httpClient: httpClient}
+}
+
 func (s *Source) compactAndUnNullVariables(input []byte) []byte {
 	undefinedVariables := httpclient.UndefinedVariables(input)
 	variables, _, _, err := jsonparser.Get(input, "body", "variables")
@@ -2031,6 +2039,16 @@ type RegularExpression struct {
 type SubscriptionSource struct {
 	client                 GraphQLSubscriptionClient
 	subscriptionOnStartFns []SubscriptionOnStartFn
+}
+
+// NewSubscriptionSource returns the resolve.SubscriptionDataSource that opens a GraphQL subscription
+// over the given client. It is the exported constructor for the very *SubscriptionSource that
+// ConfigureSubscription builds internally (`&SubscriptionSource{client: p.subscriptionClient, ...}`),
+// so the executed transport is byte-for-byte the production path. Added for planner-v2 subscription
+// lowering (D11.12), which attaches an executable trigger source without driving the full v1
+// datasource planner; onStart mirrors the config's StartupHooks.
+func NewSubscriptionSource(client GraphQLSubscriptionClient, onStart ...SubscriptionOnStartFn) *SubscriptionSource {
+	return &SubscriptionSource{client: client, subscriptionOnStartFns: onStart}
 }
 
 func (s *SubscriptionSource) HashTriggerInput(input []byte, xxh *xxhash.Digest) error {

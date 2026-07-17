@@ -1,0 +1,20 @@
+{
+  userInA {
+    id
+    name
+    aName
+    cName
+  }
+  userInB {
+    id
+    name
+    aName
+    cName
+  }
+  userInC {
+    id
+    name
+    aName
+    cName
+  }
+}

@@ -1,0 +1,7 @@
+{
+  node(id: "oven1") {
+    ... on Oven {
+      warranty
+    }
+  }
+}

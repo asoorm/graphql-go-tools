@@ -1,0 +1,28 @@
+{
+  "data": {
+    "me": {
+      "reviews": [
+        {
+          "id": "r1",
+          "author": {
+            "id": "u1",
+            "username": "u-username-1"
+          },
+          "product": {
+            "inStock": true
+          }
+        },
+        {
+          "id": "r2",
+          "author": {
+            "id": "u1",
+            "username": "u-username-1"
+          },
+          "product": {
+            "inStock": false
+          }
+        }
+      ]
+    }
+  }
+}

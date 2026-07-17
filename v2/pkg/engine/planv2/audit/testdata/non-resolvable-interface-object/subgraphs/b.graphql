@@ -1,0 +1,23 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@key", "@interfaceObject"]
+      )
+
+    type Node @key(fields: "id", resolvable: false) @interfaceObject {
+      id: ID!
+      field: String
+    }
+
+    interface Product @key(fields: "id") {
+      id: ID!
+    }
+
+    type Bread implements Product @key(fields: "id") {
+      id: ID!
+      name: String!
+    }
+
+    type Query {
+      b: Node
+    }

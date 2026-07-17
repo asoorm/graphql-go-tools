@@ -1,0 +1,10 @@
+{
+  "data": {
+    "usersByType": [
+      {
+        "id": "u1",
+        "type": "REGULAR"
+      }
+    ]
+  }
+}

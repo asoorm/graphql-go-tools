@@ -1,0 +1,10 @@
+{
+  bookContainers {
+    book {
+      upc
+      author {
+        name
+      }
+    }
+  }
+}

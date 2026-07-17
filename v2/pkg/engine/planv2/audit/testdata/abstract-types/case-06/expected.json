@@ -1,0 +1,42 @@
+{
+  "data": {
+    "products": [
+      {
+        "id": "p1",
+        "reviews": [
+          {
+            "product": {
+              "sku": "sku-1",
+              "reviewsCount": 2
+            }
+          },
+          {
+            "product": {
+              "sku": "sku-1",
+              "reviewsCount": 2
+            }
+          }
+        ]
+      },
+      {
+        "id": "p3",
+        "reviews": []
+      },
+      {
+        "id": "p2",
+        "reviews": [
+          {
+            "product": {
+              "sku": "sku-2",
+              "title": "Magazine 1"
+            }
+          }
+        ]
+      },
+      {
+        "id": "p4",
+        "reviews": []
+      }
+    ]
+  }
+}

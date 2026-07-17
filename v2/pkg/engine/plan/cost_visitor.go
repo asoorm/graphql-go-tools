@@ -30,6 +30,13 @@ type CostVisitor struct {
 
 	// The final cost tree that is built during plan traversal.
 	tree *CostTreeNode
+
+	// dsResolver, when non-nil, supplies each field's datasource-hash attribution from an EXTERNAL
+	// planner (planner-v2) instead of the internal fieldPlanners map. It is keyed by the field's
+	// response path (the node's fieldPath, e.g. "Query.hero.name") plus its type/field coordinate,
+	// so the caller need not know AST field refs. When set, getFieldDataSourceHashes is not consulted.
+	// See BuildCostCalculator.
+	dsResolver FieldDataSourceHashResolver
 }
 
 // NewCostVisitor creates a new cost tree visitor
@@ -152,7 +159,10 @@ func (v *CostVisitor) EnterField(fieldRef int) {
 
 // LeaveField fills DataSource hashes for the current node and pop it from the cost stack.
 func (v *CostVisitor) LeaveField(fieldRef int) {
-	dsHashes := v.getFieldDataSourceHashes(fieldRef)
+	var dsHashes []DSHash
+	if v.dsResolver == nil {
+		dsHashes = v.getFieldDataSourceHashes(fieldRef)
+	}
 
 	if len(v.stack) <= 1 { // Keep root on stack
 		return
@@ -163,6 +173,11 @@ func (v *CostVisitor) LeaveField(fieldRef int) {
 	current := v.stack[lastIndex]
 	if current.fieldRef != fieldRef {
 		return
+	}
+
+	if v.dsResolver != nil {
+		// External attribution: key by the node's response path + coordinate (see FieldDataSourceHashResolver).
+		dsHashes = v.dsResolver(current.fieldPath, current.fieldCoords.TypeName, current.fieldCoords.FieldName)
 	}
 
 	current.dataSourceHashes = dsHashes

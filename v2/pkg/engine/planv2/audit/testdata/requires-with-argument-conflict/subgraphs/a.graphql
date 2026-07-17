@@ -1,0 +1,34 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@key", "@external", "@requires"]
+      )
+
+    type Product @key(fields: "upc") {
+      upc: String!
+      weight: Int @external
+      price(currency: String!): Int @external
+      shippingEstimate: Int
+        @requires(
+          fields: """
+          price(currency: "USD") weight
+          """
+        )
+      shippingEstimateEUR: Int
+        @requires(
+          fields: """
+          price(currency: "EUR") weight
+          """
+        )
+      category: Category @external
+      isExpensiveCategory: Boolean
+        @requires(
+          fields: """
+          category { averagePrice(currency: "USD") }
+          """
+        )
+    }
+
+    type Category @external {
+      averagePrice(currency: String!): Int
+    }

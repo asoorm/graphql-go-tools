@@ -1,0 +1,7 @@
+{
+  users {
+    ... on User {
+      age
+    }
+  }
+}

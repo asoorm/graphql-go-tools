@@ -1,0 +1,33 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@shareable", "@key"]
+      )
+
+    type Query {
+      media: Media @shareable
+      bMedia: Media @shareable
+      book: Media @shareable
+      viewer: Viewer @shareable
+    }
+
+    union Media = Book | Movie
+    union ViewerMedia = Book | Movie
+
+    type Movie @key(fields: "id") {
+      id: ID!
+      title: String! @shareable
+      bTitle: String!
+    }
+
+    type Book @key(fields: "id") {
+      id: ID!
+      title: String! @shareable
+      bTitle: String!
+    }
+
+    type Viewer {
+      media: ViewerMedia @shareable
+      bMedia: ViewerMedia
+      book: ViewerMedia @shareable
+    }

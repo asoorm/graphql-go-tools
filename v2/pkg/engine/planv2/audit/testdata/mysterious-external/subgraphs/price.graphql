@@ -1,0 +1,15 @@
+extend schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@key", "@external"]
+      )
+
+    # Composition will fail if it's not an extension (I have no idea why this is the case)
+    extend type Product @key(fields: "id") {
+      id: ID! @external
+      price: Float
+    }
+
+    type Query {
+      cheapestProduct: Product
+    }

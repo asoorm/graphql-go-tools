@@ -1,0 +1,12 @@
+{
+  "data": {
+    "users": [
+      {
+        "__typename": "Admin"
+      },
+      {
+        "__typename": "Admin"
+      }
+    ]
+  }
+}

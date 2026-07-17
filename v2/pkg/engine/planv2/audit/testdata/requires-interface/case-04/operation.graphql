@@ -1,0 +1,8 @@
+{
+  a {
+    address {
+      __typename
+      id
+    }
+  }
+}

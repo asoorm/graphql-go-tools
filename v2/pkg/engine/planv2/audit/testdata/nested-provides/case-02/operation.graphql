@@ -1,0 +1,13 @@
+{
+  products {
+    id
+    categories {
+      id
+      name
+      subCategories {
+        id
+        name
+      }
+    }
+  }
+}

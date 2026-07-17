@@ -1,0 +1,18 @@
+{
+  products {
+    sku
+    ... on Product {
+      sku
+    }
+    ... on Book {
+      sku
+    }
+    ... on Magazine {
+      sku
+    }
+    ... on Similar {
+      __typename
+      type: __typename
+    }
+  }
+}

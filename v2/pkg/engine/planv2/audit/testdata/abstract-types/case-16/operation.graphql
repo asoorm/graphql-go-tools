@@ -1,0 +1,30 @@
+{
+  products {
+    id
+    reviews {
+      product {
+        id
+        ... on Magazine {
+          publisherType {
+            ...Publisher
+          }
+        }
+        ... on Book {
+          publisherType {
+            ...Publisher
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment Publisher on PublisherType {
+  ... on Agency {
+    id
+    companyName
+  }
+  ... on Self {
+    email
+  }
+}

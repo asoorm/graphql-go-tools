@@ -1,0 +1,7 @@
+{
+  randomUser {
+    id
+    rid
+    name
+  }
+}

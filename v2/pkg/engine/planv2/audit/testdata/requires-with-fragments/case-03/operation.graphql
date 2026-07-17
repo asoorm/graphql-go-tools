@@ -1,0 +1,8 @@
+{
+  a {
+    data {
+      __typename
+    }
+    requirer
+  }
+}

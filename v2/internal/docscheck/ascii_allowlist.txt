@@ -1,0 +1,2 @@
+# Justified non-ASCII exceptions for TestBranchAuthoredFilesAreASCII.
+# One path per line, relative to the v2 module root. Keep this empty.

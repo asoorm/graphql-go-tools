@@ -1,0 +1,12 @@
+{
+  account: node(id: "a1") {
+    ... on Chat {
+      id
+    }
+  }
+  chat: node(id: "c1") {
+    ... on Account {
+      id
+    }
+  }
+}

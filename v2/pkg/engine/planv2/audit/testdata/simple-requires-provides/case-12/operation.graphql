@@ -1,0 +1,10 @@
+{
+  me {
+    reviews {
+      product {
+        shippingEstimate
+        shippingEstimateTag
+      }
+    }
+  }
+}

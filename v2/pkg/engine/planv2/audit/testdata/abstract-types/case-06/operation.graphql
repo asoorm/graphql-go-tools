@@ -1,0 +1,16 @@
+{
+  products {
+    id
+    reviews {
+      product {
+        sku
+        ... on Magazine {
+          title
+        }
+        ... on Book {
+          reviewsCount
+        }
+      }
+    }
+  }
+}

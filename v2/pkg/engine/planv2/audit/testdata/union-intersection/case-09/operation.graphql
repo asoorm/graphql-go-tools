@@ -1,0 +1,8 @@
+{
+  aMedia {
+    ... on Movie {
+      title
+      bTitle
+    }
+  }
+}

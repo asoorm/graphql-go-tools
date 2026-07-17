@@ -1,0 +1,46 @@
+schema
+      @link(
+        url: "https://specs.apollo.dev/federation/v2.3"
+        import: ["@key", "@shareable", "@requires", "@external"]
+      ) {
+      query: Query
+    }
+
+    type Book implements Product & Similar @key(fields: "id") {
+      id: ID!
+      reviewsCount: Int!
+      reviewsScore: Float! @shareable
+      reviews: [Review!]!
+      similar: [Book] @external
+      reviewsOfSimilar: [Review!]! @requires(fields: "similar { id }")
+    }
+
+    type Magazine implements Product & Similar @key(fields: "id") {
+      id: ID!
+      reviewsCount: Int!
+      reviewsScore: Float! @shareable
+      reviews: [Review!]!
+      similar: [Magazine] @external
+      reviewsOfSimilar: [Review!]! @requires(fields: "similar { id }")
+    }
+
+    interface Product {
+      id: ID!
+      reviewsCount: Int!
+      reviewsScore: Float!
+      reviews: [Review!]!
+    }
+
+    interface Similar {
+      similar: [Product]
+    }
+
+    type Query {
+      review(id: Int!): Review
+    }
+
+    type Review {
+      id: Int!
+      body: String!
+      product: Product
+    }

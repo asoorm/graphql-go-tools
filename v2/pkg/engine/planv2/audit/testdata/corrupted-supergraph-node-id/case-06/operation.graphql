@@ -1,0 +1,14 @@
+{
+  account: node(id: "a1") {
+    id
+    ... on Chat {
+      id
+    }
+  }
+  chat: node(id: "c1") {
+    __typename
+    ... on Account {
+      id
+    }
+  }
+}

@@ -1,0 +1,19 @@
+type Query {
+  products: [Product!]!
+}
+
+type Product {
+  id: ID!
+  pid: ID!
+  category: Category
+}
+
+type Category {
+  id: ID!
+  name: String!
+  details: CategoryDetails
+}
+
+type CategoryDetails {
+  products: Int
+}

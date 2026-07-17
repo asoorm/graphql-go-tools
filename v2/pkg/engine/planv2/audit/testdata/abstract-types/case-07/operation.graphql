@@ -1,0 +1,8 @@
+{
+  products {
+    id
+    reviews {
+      id
+    }
+  }
+}

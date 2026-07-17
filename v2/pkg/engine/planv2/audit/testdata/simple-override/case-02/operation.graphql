@@ -1,0 +1,8 @@
+{
+  aFeed {
+    createdAt
+  }
+  bFeed {
+    createdAt
+  }
+}

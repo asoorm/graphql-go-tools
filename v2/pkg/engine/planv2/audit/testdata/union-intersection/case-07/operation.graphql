@@ -1,0 +1,12 @@
+{
+  viewer {
+    media {
+      ... on Book {
+        title
+      }
+      ... on Movie {
+        title
+      }
+    }
+  }
+}

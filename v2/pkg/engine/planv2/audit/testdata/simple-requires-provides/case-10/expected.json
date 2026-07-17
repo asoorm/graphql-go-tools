@@ -1,0 +1,18 @@
+{
+  "data": {
+    "me": {
+      "reviews": [
+        {
+          "product": {
+            "inStock": true
+          }
+        },
+        {
+          "product": {
+            "inStock": false
+          }
+        }
+      ]
+    }
+  }
+}

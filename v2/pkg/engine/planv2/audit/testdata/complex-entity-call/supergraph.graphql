@@ -1,0 +1,26 @@
+type Product {
+  id: String!
+  pid: String
+  price: Price
+  category: Category
+}
+
+type Query {
+  topProducts: ProductList!
+}
+
+type ProductList {
+  products: [Product!]!
+  first: Product
+  selected: Product
+}
+
+type Category {
+  id: String!
+  tag: String
+  mainProduct: Product!
+}
+
+type Price {
+  price: Float!
+}

@@ -1,0 +1,20 @@
+{
+  "data": {
+    "products": [
+      {
+        "upc": "p1",
+        "name": "p-name-1",
+        "shippingEstimate": 110,
+        "shippingEstimateEUR": 220,
+        "isExpensiveCategory": false
+      },
+      {
+        "upc": "p2",
+        "name": "p-name-2",
+        "shippingEstimate": 440,
+        "shippingEstimateEUR": 880,
+        "isExpensiveCategory": true
+      }
+    ]
+  }
+}

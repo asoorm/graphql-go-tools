@@ -1,0 +1,11 @@
+{
+  randomUser {
+    id
+    name
+  }
+  userById(id: "u2") {
+    id
+    name
+    nickname
+  }
+}

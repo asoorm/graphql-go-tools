@@ -1,0 +1,2 @@
+no-valid-plan:provably-non-resolvable
+The D10-narrow honest reject: every candidate sits behind @key(resolvable: false) with root-only entry (FORMAL_SPEC D10 amendment).

@@ -1,0 +1,26 @@
+{
+  "data": {
+    "me": {
+      "reviews": [
+        {
+          "product": {
+            "reviews": [
+              {
+                "id": "r1"
+              }
+            ]
+          }
+        },
+        {
+          "product": {
+            "reviews": [
+              {
+                "id": "r2"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

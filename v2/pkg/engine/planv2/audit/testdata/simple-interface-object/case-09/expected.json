@@ -1,0 +1,13 @@
+{
+  "data": {
+    "accounts": [
+      {
+        "name": "Alice"
+      },
+      {
+        "name": "Bob"
+      },
+      {}
+    ]
+  }
+}

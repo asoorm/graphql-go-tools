@@ -1,0 +1,13 @@
+{
+  nodes {
+    ... on Node {
+      id
+      ... on Node {
+        id
+        ... on WithWarranty {
+          warranty
+        }
+      }
+    }
+  }
+}

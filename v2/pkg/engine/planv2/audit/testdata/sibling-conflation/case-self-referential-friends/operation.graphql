@@ -1,0 +1,11 @@
+{
+  order {
+    buyer {
+      friends {
+        friends {
+          id
+        }
+      }
+    }
+  }
+}
